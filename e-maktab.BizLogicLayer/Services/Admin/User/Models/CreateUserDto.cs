@@ -17,6 +17,6 @@ public class CreateUserDto
     public string? Email { get; set; }
     public string PhoneNumber { get; set; }
     public int? OrganizationId { get; set; }
-    public int? LanguageId { get; set; }
+    public bool IsTeacher { get; set; }
     public List<int> Roles { get; set; }
 }
