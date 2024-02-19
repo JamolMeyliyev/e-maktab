@@ -12,10 +12,10 @@ namespace e_maktab.BizLogicLayer.Services;
 
 public interface IUserService : IStatusGeneric
 {
-    PagedResult<RoleListDto> GetList(RoleListSortFilterOptions dto);
-    RoleDto Get(int id);
-    public SelectList<int> AsSelectList(int? organizationId, int userTypeId);
-    HaveId<int> Create(CreateRoleDto dto);
-    void Update(UpdateRoleDto dto);
+    PagedResult<UserListDto> GetList(UserListSortFilterOptions dto);
+    UserDto Get(int id);
+    public SelectList<int> AsSelectList();
+    Task<HaveId<int>> Create(CreateUserDto dto);
+    void Update(UpdateUserDto dto);
     void Delete(int id);
 }

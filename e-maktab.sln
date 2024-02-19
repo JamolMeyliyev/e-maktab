@@ -13,6 +13,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "e-maktab.DataLayer", "e-mak
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "e-maktab.BizLogicLayer", "e-maktab.BizLogicLayer\e-maktab.BizLogicLayer.csproj", "{3A9EAF40-C072-4BA6-AE3F-C1EA294A74F8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{4EC95E98-8907-45DA-BA50-D08696E5F562}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "e-maktab.Core", "e-maktab.Core\e-maktab.Core.csproj", "{131245A8-6AAB-4A35-9092-C3FE1EE7FCE1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +35,10 @@ Global
 		{3A9EAF40-C072-4BA6-AE3F-C1EA294A74F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A9EAF40-C072-4BA6-AE3F-C1EA294A74F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A9EAF40-C072-4BA6-AE3F-C1EA294A74F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{131245A8-6AAB-4A35-9092-C3FE1EE7FCE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{131245A8-6AAB-4A35-9092-C3FE1EE7FCE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{131245A8-6AAB-4A35-9092-C3FE1EE7FCE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{131245A8-6AAB-4A35-9092-C3FE1EE7FCE1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -38,6 +46,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{662923A0-8D4B-40B7-B06A-B6A2D99A095A} = {F412A34B-2CFB-4E8E-B1C9-F652E2472A14}
 		{3A9EAF40-C072-4BA6-AE3F-C1EA294A74F8} = {BE68FD90-8BC7-4422-B4EC-D63708E4407B}
+		{131245A8-6AAB-4A35-9092-C3FE1EE7FCE1} = {4EC95E98-8907-45DA-BA50-D08696E5F562}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3DBBBDF6-2A40-4AE0-8651-73375BA8CDCC}

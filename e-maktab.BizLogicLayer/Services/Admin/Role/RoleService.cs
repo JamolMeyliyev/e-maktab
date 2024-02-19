@@ -18,7 +18,7 @@ public class RoleService : StatusGenericHandler, IRoleService
 
     public HaveId<int> Create(CreateRoleDto dto)
     {
-        
+        throw new NotImplementedException();
     }
 
     public void Delete(int id)

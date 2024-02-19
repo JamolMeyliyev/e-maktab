@@ -16,7 +16,7 @@ public partial class EMaktabContext : DbContext
     {
     }
 
-    public virtual DbSet<Class> Classes { get; set; }
+    
 
     public virtual DbSet<ClassType> ClassTypes { get; set; }
 

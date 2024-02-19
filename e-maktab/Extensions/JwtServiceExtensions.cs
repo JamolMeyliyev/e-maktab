@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using e_maktab.BizLogicLayer.HelperServices.JwtToken;
+using e_maktab.BizLogicLayer.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 
@@ -35,7 +37,20 @@ public static class JwtServiceExtensions
             });
     }
 
-   
+    public static void AddService(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddJwt(configuration);
 
-   
+        services.AddScoped<ITokenService,TokenService>();
+        services.AddScoped<IAccountService,AccountService>();
+        services.AddScoped<IUserService, UserService>();
+        services.AddScoped<IRoleService, RoleService>();
+       
+        services.AddHttpContextAccessor();
+        
+    }
+
+
+
 }
+

@@ -4,4 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace e_maktab.BizLogicLayer.Services; public class UserListDto { }
+namespace e_maktab.BizLogicLayer.Services; 
+public class UserListDto
+{
+
+}
