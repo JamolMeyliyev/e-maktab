@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace e_maktab.BizLogicLayer.Services; 
-public class UserDto
+namespace e_maktab.BizLogicLayer.Services;
+
+public interface ISmsService
 {
 
 }

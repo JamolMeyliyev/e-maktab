@@ -38,7 +38,7 @@ public class HomeworkService : IHomeworkService
         await _repos.DeleteAsync(entity);
     }
 
-    public HomeworkDto Get(int id)
+    public Task<HomeworkDto> Get(int id)
     {
         throw new NotImplementedException();
     }
@@ -51,7 +51,9 @@ public class HomeworkService : IHomeworkService
 
     public async Task Update(UpdateHomeworkDto dto)
     {
-        var entity = await _repos.SelectByIdAsync(id);
+        var entity = await _repos.SelectByIdAsync(dto.Id);
         await _repos.UpdateAsync(entity);
     }
+
+    
 }

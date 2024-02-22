@@ -100,5 +100,18 @@ public static class CustomSelectList
 
          ).ToList();
     }
+    public static List<UserAsSelectListDto> UserSelectList(this IQueryable<User> entities)
+    {
+        return entities.Select(val =>
+         new UserAsSelectListDto
+         {
+             FirstName= val.FirstName,
+             LastName= val.LastName,
+             StateId= val.StateId,
+            
+         }
+
+         ).ToList();
+    }
 
 }

@@ -1,4 +1,5 @@
-﻿using e_maktab.BizLogicLayer.Service;
+﻿using e_maktab.BizLogicLayer.Models;
+using e_maktab.BizLogicLayer.Service;
 using e_maktab.DataLayer;
 using StatusGeneric;
 using System;
@@ -10,12 +11,12 @@ using WEBASE.Models;
 
 namespace e_maktab.BizLogicLayer.Services;
 
-public interface IUserService : IStatusGeneric
+public interface IUserService
 {
-    PagedResult<UserListDto> GetList(UserListSortFilterOptions dto);
+    List<UserDto> GetList(UserListSortFilterOptions dto);
     UserDto Get(int id);
-    public SelectList<int> AsSelectList();
-    Task<HaveId<int>> Create(CreateUserDto dto);
-    void Update(UpdateUserDto dto);
-    void Delete(int id);
+    public List<UserAsSelectListDto> AsSelectList();
+    Task<int> Create(CreateUserDto dto);
+    Task Update(UpdateUserDto dto);
+    Task Delete(int id);
 }

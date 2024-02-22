@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-
+using e_maktab.BizLogicLayer.Models;
 using e_maktab.DataLayer;
 
 using e_maktab.DataLayer.Entities;
@@ -9,7 +9,7 @@ using WEBASE.Models;
 
 namespace e_maktab.BizLogicLayer.Services;
 
-public class UserService : StatusGenericHandler, IUserService
+public class UserService :  IUserService
 {
     private readonly IMapper _mapper;
     private readonly IUserRepository _repos;
@@ -34,12 +34,12 @@ public class UserService : StatusGenericHandler, IUserService
         _teacherRepos = teacherRepository;
     }
 
-    public SelectList<int> AsSelectList()
+    public List<UserAsSelectListDto> AsSelectList()
     {
-        throw new NotImplementedException();
+        return _repos.SelectAll().UserSelectList();
     }
 
-    public async Task<HaveId<int>> Create(CreateUserDto dto)
+    public async Task<int> Create(CreateUserDto dto)
     {
         var entity = _mapper.Map<User>(dto);
         using (var transaction = _unitOfWork.BeginTransaction())
@@ -49,32 +49,27 @@ public class UserService : StatusGenericHandler, IUserService
                 if(dto.IsTeacher)
                 {
                     var teacher = _mapper.Map<Teacher>(dto);
-                    await _teacherRepos.InsertAsync(teacher);
-                    await transaction.CommitAsync();
-                    return HaveId.Create(teacher.Id);
-                    
+                    var result = await _teacherRepos.InsertAsync(teacher);
+                    await transaction.CommitAsync();                   
                 }
-                else
+                var user = await _repos.InsertAsync(entity);
+                if (dto.Roles is not null && dto.Roles.Count > 0)
                 {
-                    var user = await _repos.InsertAsync(entity);
-                    if (dto.Roles is not null && dto.Roles.Count > 0)
+                    foreach (var roleId in dto.Roles)
                     {
-                        foreach (var roleId in dto.Roles)
+                        var roleEntity = new UserRole()
                         {
-                            var roleEntity = new UserRole()
-                            {
-                                RoleId = roleId,
-                                UserId = user.Id,
-                                StateId = 1,
-                                DateOfCreated = DateTime.UtcNow,
-                            };
-                            //await _userRoleRepos.InsertAsync(roleEntity);
+                            RoleId = roleId,
+                            UserId = user.Id,
+                            StateId = 1,
+                            DateOfCreated = DateTime.UtcNow,
+                        };
+                        await _userRoleRepos.InsertAsync(roleEntity);
 
-                        }
                     }
-                    await transaction.CommitAsync();
-                    return HaveId.Create(user.Id);
                 }
+                await transaction.CommitAsync();
+                return user.Id;
             }
             catch (Exception ex)
             {
@@ -85,7 +80,7 @@ public class UserService : StatusGenericHandler, IUserService
 
     }
 
-    public void Delete(int id)
+    public Task Delete(int id)
     {
         throw new NotImplementedException();
     }
@@ -95,12 +90,12 @@ public class UserService : StatusGenericHandler, IUserService
         throw new NotImplementedException();
     }
 
-    public PagedResult<UserListDto> GetList(UserListSortFilterOptions dto)
+    public List<UserDto> GetList(UserListSortFilterOptions dto)
     {
         throw new NotImplementedException();
     }
 
-    public void Update(UpdateUserDto dto)
+    public Task Update(UpdateUserDto dto)
     {
         throw new NotImplementedException();
     }

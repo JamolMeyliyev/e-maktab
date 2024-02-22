@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace e_maktab.BizLogicLayer.Services.Admin.User.QueryObjects
+namespace e_maktab.BizLogicLayer.Models;
+
+public class UserListSortFilterOptions
 {
-    internal class UserListDtoListFilter
-    {
-    }
 }
