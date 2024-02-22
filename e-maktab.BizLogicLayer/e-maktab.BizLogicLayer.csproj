@@ -32,6 +32,10 @@
 
   <ItemGroup>
     <Folder Include="Middleware\" />
+    <Folder Include="Pagination\" />
+    <Folder Include="Services\Teacher\" />
+    <Folder Include="Services\Science\" />
+    <Folder Include="Services\Lesson\" />
   </ItemGroup>
 
 </Project>

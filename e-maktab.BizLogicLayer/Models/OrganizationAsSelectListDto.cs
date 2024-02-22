@@ -4,8 +4,4 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace e_maktab.BizLogicLayer.Services;
-
-public class RoleSelectList
-{
-}
+namespace e_maktab.BizLogicLayer.Models; public class OrganizationAsSelectListDto { }

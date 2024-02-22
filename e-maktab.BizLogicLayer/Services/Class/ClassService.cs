@@ -1,22 +1,20 @@
-﻿using e_maktab.BizLogicLayer.Models.Role;
-using StatusGeneric;
+﻿using e_maktab.BizLogicLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WEBASE.Models;
 
 namespace e_maktab.BizLogicLayer.Services;
 
-public class RoleService : StatusGenericHandler, IRoleService
+public class ClassService : IClassService
 {
-    public SelectList<int> AsSelectList(int? organizationId, int userTypeId)
+    public List<ClassAsSelectListDto> AsSelectList()
     {
         throw new NotImplementedException();
     }
 
-    public HaveId<int> Create(CreateRoleDto dto)
+    public Task<int> Create(CreateClassDto dto)
     {
         throw new NotImplementedException();
     }
@@ -26,17 +24,17 @@ public class RoleService : StatusGenericHandler, IRoleService
         throw new NotImplementedException();
     }
 
-    public RoleDto Get(int id)
+    public ClassDto Get(int id)
     {
         throw new NotImplementedException();
     }
 
-    public PagedResult<RoleListDto> GetList(RoleListSortFilterOptions dto)
+    public List<ClassDto> GetList(ClassListSortFilterOptions dto)
     {
         throw new NotImplementedException();
     }
 
-    public void Update(UpdateRoleDto dto)
+    public void Update(UpdateClassDto dto)
     {
         throw new NotImplementedException();
     }

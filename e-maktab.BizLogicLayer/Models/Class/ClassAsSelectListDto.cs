@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace e_maktab.BizLogicLayer.Services;
-
-public class UserSelectList
+namespace e_maktab.BizLogicLayer.Models;
+public class ClassAsSelectListDto 
 {
 }

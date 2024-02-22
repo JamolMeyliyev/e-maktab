@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace e_maktab.BizLogicLayer.Service;
+namespace e_maktab.BizLogicLayer.Models;
 
-public class RoleListDto
+public class UpdateOrganizationDto
 {
+    public int Id { get; set; }
 }

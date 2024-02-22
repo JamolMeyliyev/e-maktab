@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 
 namespace e_maktab.BizLogicLayer.Services;
 
-public class CreateRoleDto
+public class AttendanceService
 {
 }

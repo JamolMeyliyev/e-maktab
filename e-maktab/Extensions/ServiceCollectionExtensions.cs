@@ -3,6 +3,7 @@ using e_maktab.BizLogicLayer.Services;
 using e_maktab.DataLayer.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 using e_maktab.DataLayer;
+using e_maktab.BizLogicLayer.Services.Admin.Organization.Mapper;
 
 namespace e_maktab.Extensions;
 
@@ -29,7 +30,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IAccountService, AccountService>();
         services.AddScoped<IAccountService, AccountService>();
         services.AddScoped<ITokenService, TokenService>();
-        services.AddAutoMapper(typeof(UserMapper));
+        services.AddAutoMapper(typeof(OrganizationMapper));
 
         return services;
     }

@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace e_maktab.BizLogicLayer.Services;
+namespace e_maktab.BizLogicLayer.Models;
 
-public class UserSelectList
+public class CreateClassDto
 {
 }
