@@ -30,7 +30,7 @@ public class OrganizationService : IOrganizationService
 
     }
 
-    public void Delete(int id)
+    public Task Delete(int id)
     {
         throw new NotImplementedException();
     }
@@ -46,7 +46,7 @@ public class OrganizationService : IOrganizationService
         return _mapper.Map<List<OrganizationDto>>(org);
     }
 
-    public void Update(UpdateOrganizationDto dto)
+    public Task Update(UpdateOrganizationDto dto)
     {
         throw new NotImplementedException();
     }

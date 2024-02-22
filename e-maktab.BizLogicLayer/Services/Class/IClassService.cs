@@ -13,6 +13,6 @@ public interface IClassService
     ClassDto Get(int id);
     public List<ClassAsSelectListDto> AsSelectList();
     Task<int> Create(CreateClassDto dto);
-    void Update(UpdateClassDto dto);
-    void Delete(int id);
+    Task Update(UpdateClassDto dto);
+    Task Delete(int id);
 }
