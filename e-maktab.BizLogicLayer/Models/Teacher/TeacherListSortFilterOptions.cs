@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace e_maktab.BizLogicLayer.Models.Teacher
+namespace e_maktab.BizLogicLayer.Models;
+
+public class TeacherListSortFilterOptions
 {
-    internal class TeacherListSortFilterOptions
-    {
-    }
 }
