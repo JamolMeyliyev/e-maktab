@@ -50,7 +50,6 @@ public static class CustomSelectList
 
          ).ToList();
     }
-
     public static List<TeacherAsSelectListDto> TeacherSelectList(this IQueryable<Teacher> entities)
     {
         return entities.Select(val =>
@@ -64,7 +63,6 @@ public static class CustomSelectList
 
          ).ToList();
     }
-
     public static List<OrganizationAsSelectListDto> TeacherSelectList(this IQueryable<Organization> entities)
     {
         return entities.Select(val =>
@@ -86,6 +84,18 @@ public static class CustomSelectList
              Id = val.Id,
              StateId = val.StateId,
              ScienceId= val.ScienceId
+         }
+
+         ).ToList();
+    }
+    public static List<HomeworkAsSelectListDto> HomeworkSelectList(this IQueryable<Homework> entities)
+    {
+        return entities.Select(val =>
+         new HomeworkAsSelectListDto
+         {
+             Id = val.Id,
+             StateId = val.StateId,
+             Title= val.Title
          }
 
          ).ToList();

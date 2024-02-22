@@ -39,4 +39,18 @@ public partial class EnumState
 
     [InverseProperty("State")]
     public virtual ICollection<User> Users { get; set; } = new List<User>();
+    [InverseProperty("State")]
+    public virtual ICollection<Homework> Homeworks { get; set; } = new List<Homework>();
+    [InverseProperty("State")]
+    public virtual ICollection<UserLessonAttendance> UserLessonAttendances { get; set; } = new List<UserLessonAttendance>();
+
+    [InverseProperty("State")]
+    public virtual ICollection<Teacher> Teachers { get; set; } = new List<Teacher>();
+
+    [InverseProperty("State")]
+    public virtual ICollection<Lesson> Lessons { get; set; } = new List<Lesson>();
+
+    [InverseProperty("State")]
+    public virtual ICollection<Science> Sciences { get; set; } = new List<Science>();
+
 }
