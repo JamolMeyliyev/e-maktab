@@ -70,8 +70,8 @@ public static class CustomSelectList
         return entities.Select(val =>
          new OrganizationAsSelectListDto
          {
-             FirstName = val.FirstName,
-             LastName = val.LastName,
+             FullName= val.FullName,
+             Inn = val.Inn,
              Id = val.Id,
              StateId = val.StateId
          }

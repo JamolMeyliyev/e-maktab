@@ -19,7 +19,7 @@ public class OrganizationService : IOrganizationService
 
     public List<OrganizationAsSelectListDto> AsSelectList()
     {
-        _repos.SelectAll();
+       return _repos.SelectAll().TeacherSelectList();
     }
 
     public async Task<int> Create(CreateOrganizationDto dto)
@@ -30,14 +30,16 @@ public class OrganizationService : IOrganizationService
 
     }
 
-    public Task Delete(int id)
+    public async Task Delete(int id)
     {
-        throw new NotImplementedException();
+        var entity = await _repos.SelectByIdAsync(id);
+        await _repos.DeleteAsync(entity);
     }
 
-    public Task<OrganizationDto> Get(int id)
+    public async Task<OrganizationDto> Get(int id)
     {
-        throw new NotImplementedException();
+        var entity = await _repos.SelectByIdAsync(id);
+        return _mapper.Map<OrganizationDto>(entity);
     }
 
     public List<OrganizationDto> GetList(OrganizationListSortFilterOptions dto)
@@ -46,8 +48,9 @@ public class OrganizationService : IOrganizationService
         return _mapper.Map<List<OrganizationDto>>(org);
     }
 
-    public Task Update(UpdateOrganizationDto dto)
+    public async Task Update(UpdateOrganizationDto dto)
     {
-        throw new NotImplementedException();
+        var entity = await _repos.SelectByIdAsync(dto.Id);
+        await _repos.UpdateAsync(entity);
     }
 }
