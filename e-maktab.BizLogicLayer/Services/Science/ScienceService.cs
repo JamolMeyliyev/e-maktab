@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using e_maktab.BizLogicLayer.Models.Science;
-using e_maktab.BizLogicLayer.Services.Science;
+using e_maktab.BizLogicLayer.Services;
 using e_maktab.DataLayer.Entities;
 using e_maktab.DataLayer.Repositories;
 using System;

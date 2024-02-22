@@ -65,5 +65,19 @@ public static class CustomSelectList
          ).ToList();
     }
 
+    public static List<OrganizationAsSelectListDto> TeacherSelectList(this IQueryable<Organization> entities)
+    {
+        return entities.Select(val =>
+         new OrganizationAsSelectListDto
+         {
+             FirstName = val.FirstName,
+             LastName = val.LastName,
+             Id = val.Id,
+             StateId = val.StateId
+         }
+
+         ).ToList();
+    }
+
 
 }

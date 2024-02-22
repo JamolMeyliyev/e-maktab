@@ -33,9 +33,7 @@ public partial class EnumState
     [InverseProperty("State")]
     public virtual ICollection<Role> Roles { get; set; } = new List<Role>();
 
-    [InverseProperty("State")]
-    public virtual ICollection<SysRole> SysRoles { get; set; } = new List<SysRole>();
-
+   
     [InverseProperty("State")]
     public virtual ICollection<UserRole> UserRoles { get; set; } = new List<UserRole>();
 

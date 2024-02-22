@@ -11,7 +11,7 @@ namespace e_maktab.BizLogicLayer.Services.Admin;
 public interface IOrganizationService
 {
     List<OrganizationDto> GetList(OrganizationListSortFilterOptions dto);
-    Task<UserDto> Get(int id);
+    Task<OrganizationDto> Get(int id);
     List<OrganizationAsSelectListDto> AsSelectList();
     Task<int> Create(CreateOrganizationDto dto);
     Task Update(UpdateOrganizationDto dto);

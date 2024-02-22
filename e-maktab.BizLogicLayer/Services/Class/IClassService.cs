@@ -10,7 +10,7 @@ namespace e_maktab.BizLogicLayer.Services;
 public interface IClassService
 {
     List<ClassDto> GetList(ClassListSortFilterOptions dto);
-    ClassDto Get(int id);
+    Task<ClassDto> Get(int id);
     public List<ClassAsSelectListDto> AsSelectList();
     Task<int> Create(CreateClassDto dto);
     Task Update(UpdateClassDto dto);

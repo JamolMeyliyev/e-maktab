@@ -1,4 +1,8 @@
-﻿using e_maktab.BizLogicLayer.Models;
+﻿using AutoMapper;
+using e_maktab.BizLogicLayer.Models;
+using e_maktab.BizLogicLayer.Models.Science;
+using e_maktab.DataLayer.Entities;
+using e_maktab.DataLayer.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,33 +13,46 @@ namespace e_maktab.BizLogicLayer.Services;
 
 public class ClassService : IClassService
 {
+    private readonly IClassRepository _repos;
+    private readonly IMapper _mapper;
+    public ClassService(IClassRepository repos, IMapper mapper)
+    {
+        _repos = repos;
+        _mapper = mapper;
+    }
     public List<ClassAsSelectListDto> AsSelectList()
     {
-        throw new NotImplementedException();
+        return _repos.SelectAll().ClassSelectList();
     }
 
-    public Task<int> Create(CreateClassDto dto)
+    public async Task<int> Create(CreateClassDto dto)
     {
-        throw new NotImplementedException();
+        var entity = _mapper.Map<Class>(dto);
+        var result = await _repos.InsertAsync(entity);
+        return result.Id;
     }
 
-    public void Delete(int id)
+    public async Task Delete(int id)
     {
-        throw new NotImplementedException();
+        var entity = await _repos.SelectByIdAsync(id);
+        await _repos.DeleteAsync(entity);
     }
 
-    public ClassDto Get(int id)
+    public async Task<ClassDto> Get(int id)
     {
-        throw new NotImplementedException();
+        var entity = await _repos.SelectByIdAsync(id);
+        return _mapper.Map<ClassDto>(entity);
     }
 
     public List<ClassDto> GetList(ClassListSortFilterOptions dto)
     {
-        throw new NotImplementedException();
+        var list = _repos.SelectAll().ToList();
+        return _mapper.Map<List<ClassDto>>(list);
     }
 
-    public void Update(UpdateClassDto dto)
+    public async Task Update(UpdateClassDto dto)
     {
-        throw new NotImplementedException();
+        var entity = await _repos.SelectByIdAsync(dto.Id);
+        await _repos.UpdateAsync(entity);
     }
 }

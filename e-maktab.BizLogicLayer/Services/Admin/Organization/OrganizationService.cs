@@ -19,7 +19,7 @@ public class OrganizationService : IOrganizationService
 
     public List<OrganizationAsSelectListDto> AsSelectList()
     {
-        throw new NotImplementedException();
+        _repos.SelectAll();
     }
 
     public async Task<int> Create(CreateOrganizationDto dto)
@@ -35,7 +35,7 @@ public class OrganizationService : IOrganizationService
         throw new NotImplementedException();
     }
 
-    public UserDto Get(int id)
+    public Task<OrganizationDto> Get(int id)
     {
         throw new NotImplementedException();
     }
