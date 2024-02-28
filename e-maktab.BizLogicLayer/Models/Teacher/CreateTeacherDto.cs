@@ -14,5 +14,4 @@ public class CreateTeacherDto
     public string? PhoneNumber { get; set; }
     public int? OrganizationId { get; set; }
     public int StateId { get; set; }
-    public int ClassId { get; set; }
 }

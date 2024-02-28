@@ -14,4 +14,6 @@ public interface IAttendanceService
     List<AttendanceAsSelectListDto> AsSelectList();
     Task<int> Create(CreateAttendanceDto attendance);
     Task Delete(int id);
+
+    
 }

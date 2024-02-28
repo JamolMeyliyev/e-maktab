@@ -17,7 +17,7 @@ public abstract class GenericRepository<TEntity> : IGenericRepository<TEntity>
     public GenericRepository(EMaktabContext appDbContext) =>
         this.appDbContext = appDbContext;
 
-    public async ValueTask<TEntity> InsertAsync(
+    public virtual async ValueTask<TEntity> InsertAsync(
         TEntity entity)
     {
         var entityEntry = await this.appDbContext
@@ -28,13 +28,13 @@ public abstract class GenericRepository<TEntity> : IGenericRepository<TEntity>
         return entityEntry.Entity;
     }
 
-    public IQueryable<TEntity> SelectAll() =>
+    public virtual IQueryable<TEntity> SelectAll() =>
         this.appDbContext.Set<TEntity>();
 
-    public async ValueTask<TEntity> SelectByIdAsync(int id) =>
+    public virtual async ValueTask<TEntity> SelectByIdAsync(int id) =>
         await this.appDbContext.Set<TEntity>().FindAsync(id);
 
-    public async ValueTask<TEntity> SelectByIdWithDetailsAsync(
+    public virtual async ValueTask<TEntity> SelectByIdWithDetailsAsync(
         Expression<Func<TEntity, bool>> expression,
         string[] includes = null)
     {
@@ -51,7 +51,7 @@ public abstract class GenericRepository<TEntity> : IGenericRepository<TEntity>
         return await entities.FirstOrDefaultAsync(expression);
     }
 
-    public async ValueTask<TEntity> UpdateAsync(TEntity entity)
+    public virtual async ValueTask<TEntity> UpdateAsync(TEntity entity)
     {
         var entityEntry = this.appDbContext
             .Update<TEntity>(entity);
@@ -61,7 +61,7 @@ public abstract class GenericRepository<TEntity> : IGenericRepository<TEntity>
         return entityEntry.Entity;
     }
 
-    public async ValueTask<TEntity> DeleteAsync(TEntity entity)
+    public virtual async ValueTask<TEntity> DeleteAsync(TEntity entity)
     {
         var entityEntry = this.appDbContext
             .Set<TEntity>()
@@ -72,7 +72,7 @@ public abstract class GenericRepository<TEntity> : IGenericRepository<TEntity>
         return entityEntry.Entity;
     }
 
-    public async ValueTask<int> SaveChangesAsync() =>
+    public virtual async ValueTask<int> SaveChangesAsync() =>
         await this.appDbContext
             .SaveChangesAsync();
 }

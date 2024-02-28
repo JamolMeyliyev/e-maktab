@@ -6,15 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace e_maktab.BizLogicLayer.Models.Role;
+namespace e_maktab.BizLogicLayer.Models;
 
-public class RoleDto
+public class ModuleDto
 {
     public int Id { get; set; }
     public string ShortName { get; set; } = null!;
-    public string FullName { get; set; } = null!;
-    public bool IsAdmin { get; set; }
     public int StateId { get; set; }
-    public List<ModuleDto> Modules { get; set; }
-
 }

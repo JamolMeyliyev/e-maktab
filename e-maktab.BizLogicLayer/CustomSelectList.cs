@@ -113,5 +113,18 @@ public static class CustomSelectList
 
          ).ToList();
     }
+    public static List<RoleAsSelectListDto> RoleSelectList(this IQueryable<Role> entities)
+    {
+        return entities.Select(val =>
+         new RoleAsSelectListDto
+         {
+             Id = val.Id,
+             ShortName = val.ShortName,
+             
+
+         }
+
+         ).ToList();
+    }
 
 }

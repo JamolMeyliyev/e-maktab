@@ -3,10 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace e_maktab.BizLogicLayer.Models;
 
@@ -19,6 +16,5 @@ public class ClassDto
     public DateTime DateOfCreated { get; set; }
     public DateTime? DateOfModified { get; set; }
     public int StateId { get; set; }
-    public virtual ICollection<Lesson> Lessons { get; set; } = new List<Lesson>();
-    public virtual ICollection<User> Users { get; set; } = new List<User>();
+    
 }

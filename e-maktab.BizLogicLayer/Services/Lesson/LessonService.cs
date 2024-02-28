@@ -39,12 +39,19 @@ public class LessonService : ILessonService
         return _mapper.Map<LessonDto>(entity);  
     }
 
+    public async Task GetLessonStudents(int id)
+    {
+        var entity = await _repos.SelectByIdAsync(id);
+
+    }
+
     public List<LessonDto> GetList(LessonListSortFilterOptions dto)
     {
         var list = _repos.SelectAll().ToList();
         return _mapper.Map<List<LessonDto>>(list);
     }
 
+   
 
     public async Task Update(UpdateLessonDto dto)
     {

@@ -14,6 +14,6 @@ public class UpdateClassDto
     public string? ShortName { get; set; }
     public string? FullName { get; set; }
     public int? StateId { get; set; }
-    public virtual ICollection<int>? Users { get; set; }
+
   
 }

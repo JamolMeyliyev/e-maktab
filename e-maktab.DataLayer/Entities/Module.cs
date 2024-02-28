@@ -3,21 +3,16 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-using Microsoft.EntityFrameworkCore;
+
 
 namespace e_maktab.DataLayer.Entities;
 
 [Table("modules")]
-[Index("Code", Name = "ux_module_code", IsUnique = true)]
 public partial class Module
 {
     [Key]
     [Column("id")]
     public int Id { get; set; }
-
-    [Column("code")]
-    [StringLength(100)]
-    public string Code { get; set; } = null!;
 
     [Column("short_name")]
     [StringLength(250)]
@@ -37,3 +32,4 @@ public partial class Module
     [InverseProperty("Modules")]
     public virtual EnumState State { get; set; } = null!;
 }
+

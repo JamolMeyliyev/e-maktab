@@ -1,11 +1,12 @@
-﻿using e_maktab.BizLogicLayer.Models.Role;
+﻿using e_maktab.BizLogicLayer.Models;
+using e_maktab.BizLogicLayer.Models.Role;
 using e_maktab.BizLogicLayer.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace e_maktab.Controllers.Admin;
 
-[Route("api/[controller]")]
+[Route("api/[controller]/[action]")]
 [ApiController]
 public class RoleController : ControllerBase
 {
@@ -16,11 +17,25 @@ public class RoleController : ControllerBase
         _service = service;
     }
     [HttpGet]
-    public async Task<IActionResult> GetList([FromQuery] RoleListSortFilterOptions filter)
+    public IActionResult GetList([FromQuery] RoleListSortFilterOptions filter)
     {
         try
         {
             return Ok( _service.GetList(filter));
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+
+    [HttpGet]
+    public IActionResult AsSelectList()
+    {
+        try
+        {
+            _service.AsSelectList();
+            return Ok();
         }
         catch (Exception ex)
         {
@@ -32,7 +47,7 @@ public class RoleController : ControllerBase
     {
         try
         {
-            return Ok( _service.Create(model));
+            return Ok(await _service.Create(model));
         }
         catch (Exception ex)
         {

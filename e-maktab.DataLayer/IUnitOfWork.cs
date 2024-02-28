@@ -6,11 +6,8 @@ namespace e_maktab.DataLayer;
 
 public interface IUnitOfWork
 {
-    EMaktabContext Context { get; }
-    IDbContextTransaction CurrentTransaction { get; }
-    TRepository GetRepository<TRepository>();
+    IDbContextTransaction CurrencyTransaction { get; }
     IDbContextTransaction BeginTransaction();
-    void Save();
     void Commit();
     void Rollback();
 }

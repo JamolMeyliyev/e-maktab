@@ -4,6 +4,7 @@ using e_maktab.DataLayer;
 
 using e_maktab.DataLayer.Entities;
 using e_maktab.DataLayer.Repositories;
+using Microsoft.AspNetCore.Identity;
 using StatusGeneric;
 using WEBASE.Models;
 
@@ -42,6 +43,9 @@ public class UserService :  IUserService
     public async Task<int> Create(CreateUserDto dto)
     {
         var entity = _mapper.Map<User>(dto);
+
+        entity.PasswordHash = new PasswordHasher<User>().HashPassword(entity, dto.Password);
+
         using (var transaction = _unitOfWork.BeginTransaction())
         {
             try
@@ -61,8 +65,8 @@ public class UserService :  IUserService
                         {
                             RoleId = roleId,
                             UserId = user.Id,
-                            StateId = 1,
-                            DateOfCreated = DateTime.UtcNow,
+                            StateId = 1
+                            
                         };
                         await _userRoleRepos.InsertAsync(roleEntity);
 

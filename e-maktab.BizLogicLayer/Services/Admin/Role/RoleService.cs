@@ -1,4 +1,10 @@
-﻿using e_maktab.BizLogicLayer.Models.Role;
+﻿using AutoMapper;
+using e_maktab.BizLogicLayer.Models;
+using e_maktab.BizLogicLayer.Models.Role;
+using e_maktab.DataLayer;
+using e_maktab.DataLayer.Entities;
+using e_maktab.DataLayer.Repositories;
+using Microsoft.AspNetCore.Identity;
 using StatusGeneric;
 using System;
 using System.Collections.Generic;
@@ -9,35 +15,82 @@ using WEBASE.Models;
 
 namespace e_maktab.BizLogicLayer.Services;
 
-public class RoleService : StatusGenericHandler, IRoleService
+public class RoleService : IRoleService
 {
-    public SelectList<int> AsSelectList(int? organizationId, int userTypeId)
+    private readonly IRoleRepository _repos;
+    private readonly IMapper _mapper;
+    private readonly IUnitOfWork _unitOfWork;
+    private readonly IRoleModuleRepository _roleModuleRepos;
+    public RoleService(IRoleRepository repos, IMapper mapper,IUnitOfWork unitOfWork, IRoleModuleRepository roleModuleRepos)
     {
-        throw new NotImplementedException();
+        _repos = repos;
+        _mapper = mapper;
+        _unitOfWork = unitOfWork;
+        _roleModuleRepos = roleModuleRepos;
+    }
+    public List<RoleAsSelectListDto> AsSelectList()
+    {
+        return _repos.SelectAll().RoleSelectList();
     }
 
-    public HaveId<int> Create(CreateRoleDto dto)
+    public async Task<int> Create(CreateRoleDto dto)
     {
-        throw new NotImplementedException();
+        var entity = _mapper.Map<Role>(dto);
+
+       
+        using (var transaction = _unitOfWork.BeginTransaction())
+        {
+            try
+            {
+               
+                var role = await _repos.InsertAsync(entity);
+                if (dto.Modules is not null && dto.Modules.Count > 0)
+                {
+                    foreach (var moduleId in dto.Modules)
+                    {
+                        var roleEntity = new RoleModule()
+                        {
+                            RoleId = role.Id,
+                            ModuleId = moduleId
+                            
+                        };
+                        await _roleModuleRepos.InsertAsync(roleEntity);
+
+                    }
+                }
+                _unitOfWork.Commit();
+                return role.Id;
+            }
+            catch (Exception ex)
+            {
+                _unitOfWork.Rollback();
+                throw new Exception();
+            }
+        }
     }
 
-    public void Delete(int id)
+    public async Task Delete(int id)
     {
-        throw new NotImplementedException();
+        var entity = await _repos.SelectByIdAsync(id);
+        await _repos.DeleteAsync(entity);
+
     }
 
-    public RoleDto Get(int id)
+    public async Task<RoleDto> Get(int id)
     {
-        throw new NotImplementedException();
+        var entity = await _repos.SelectByIdAsync(id);
+        return _mapper.Map<RoleDto>(entity);
     }
 
-    public PagedResult<RoleListDto> GetList(RoleListSortFilterOptions dto)
+    public List<RoleDto> GetList(RoleListSortFilterOptions dto)
     {
-        throw new NotImplementedException();
+        var list =  _repos.SelectAll().ToList();
+        return _mapper.Map<List<RoleDto>>(list);
     }
 
-    public void Update(UpdateRoleDto dto)
+    public async Task Update(UpdateRoleDto dto)
     {
-        throw new NotImplementedException();
+        var entity = await _repos.SelectByIdAsync(dto.Id);
+        await _repos.UpdateAsync(entity);
     }
 }

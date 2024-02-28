@@ -5,7 +5,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
 namespace e_maktab.DataLayer.Entities;
-
 [Table("roles")]
 public partial class Role
 {
@@ -39,4 +38,7 @@ public partial class Role
     [ForeignKey("StateId")]
     [InverseProperty("Roles")]
     public virtual EnumState State { get; set; } = null!;
+
+    [InverseProperty("Role")]
+    public virtual ICollection<UserRole> UserRoles { get; set; } = new List<UserRole>();
 }

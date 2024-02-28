@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using e_maktab.BizLogicLayer.Models;
 using e_maktab.BizLogicLayer.Models.Science;
 using e_maktab.BizLogicLayer.Services;
 using e_maktab.DataLayer.Entities;
@@ -38,10 +39,21 @@ public class ScienceService : IScienceService
         await _repos.DeleteAsync(entity);
     }
 
+    public async Task<ScienceDto> Get(int id)
+    {
+        var entity = await _repos.SelectByIdAsync(id);
+        return _mapper.Map<ScienceDto>(entity);
+    }
+
     public List<ScienceDto> GetList()
     {
         var list = _repos.SelectAll().ToList();
         return _mapper.Map<List<ScienceDto>>(list);
+    }
+
+    public List<ScienceDto> GetList(ScienceListSortFilterOptions options)
+    {
+        throw new NotImplementedException();
     }
 
     public async Task Update(UpdateScienceDto dto)

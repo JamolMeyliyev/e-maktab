@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using e_maktab.DataLayer.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace e_maktab.DataLayer.Entities;
@@ -39,18 +40,18 @@ public partial class User
     [Column("state_id")]
     public int StateId { get; set; }
 
-    [Column("class_id")]
-    public int? ClassId { get; set; }
-
     [Column("date_of_created", TypeName = "timestamp without time zone")]
     public DateTime DateOfCreated { get; set; }
 
     [Column("date_of_modified", TypeName = "timestamp without time zone")]
     public DateTime? DateOfModified { get; set; }
 
+    [Column("class_id")]
+    public int ClassId { get; set; }
+
     [ForeignKey("ClassId")]
     [InverseProperty("Users")]
-    public virtual Class? Class { get; set; }
+    public virtual Class Class { get; set; } = null!;
 
     [ForeignKey("OrganizationId")]
     [InverseProperty("Users")]
@@ -62,4 +63,7 @@ public partial class User
 
     [InverseProperty("User")]
     public virtual ICollection<UserLessonAttendance> UserLessonAttendances { get; set; } = new List<UserLessonAttendance>();
+
+    [InverseProperty("User")]
+    public virtual ICollection<UserRole> UserRoles { get; set; } = new List<UserRole>();
 }

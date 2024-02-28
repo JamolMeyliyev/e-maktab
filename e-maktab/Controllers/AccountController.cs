@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace e_maktab.Controllers;
 
-[Route("api/[controller]")]
+[Route("api/[controller]/[action]")]
 [ApiController]
 public class AccountController : ControllerBase
 {

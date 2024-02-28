@@ -1,28 +1,27 @@
-﻿using e_maktab.Attributes;
-using e_maktab.BizLogicLayer.Models;
+﻿using e_maktab.BizLogicLayer.Models;
+using e_maktab.BizLogicLayer.Models.Atttendance;
 using e_maktab.BizLogicLayer.Services;
-using e_maktab.Core.Options;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace e_maktab.Controllers.Admin;
+namespace e_maktab.Controllers;
 
 [Route("api/[controller]/[action]")]
 [ApiController]
-public class UsersController : ControllerBase
+public class AttendanceController : ControllerBase
 {
-    private readonly IUserService _service;
-    public UsersController(IUserService service)
+    private IAttendanceService _service;
+    public AttendanceController(IAttendanceService service)
     {
         _service = service;
     }
-    [HttpGet]
-    [Authorize(moduleCodes: ModuleCode.UserView)]
-    public async Task<IActionResult> GetList(UserListSortFilterOptions options)
+    
+    [HttpPost]
+    public async Task<IActionResult> Create([FromBody] CreateAttendanceDto dto)
     {
         try
         {
-            return Ok(_service.GetList(options));
+            return Ok(await _service.Create(dto));
         }
         catch (Exception ex)
         {
@@ -42,14 +41,14 @@ public class UsersController : ControllerBase
             return BadRequest(ex.Message);
         }
     }
-
-    [HttpPost]
-    [Authorize(moduleCodes:ModuleCode.UserCreate)]
-    public async Task<IActionResult> Create(CreateUserDto dto)
+    
+    [HttpDelete]
+    public async Task<IActionResult> Delete(int id)
     {
         try
         {
-            return Ok(await _service.Create(dto));
+            await _service.Delete(id);
+            return Ok();
         }
         catch (Exception ex)
         {
@@ -57,3 +56,4 @@ public class UsersController : ControllerBase
         }
     }
 }
+

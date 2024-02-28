@@ -34,6 +34,12 @@ public class TeacherService : ITeacherService
         await _repos.DeleteAsync(entity);
     }
 
+    public async Task<TeacherDto> Get(int id)
+    {
+        var entity = await _repos.SelectByIdAsync(id);
+        return _mapper.Map<TeacherDto>(entity);
+    }
+
     public List<TeacherDto> GetList(TeacherListSortFilterOptions options)
     {
         var list = _repos.SelectAll().ToList();

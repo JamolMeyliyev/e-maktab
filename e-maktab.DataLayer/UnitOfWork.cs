@@ -8,43 +8,37 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace e_maktab.DataLayer;
-
 public class UnitOfWork : IUnitOfWork
 {
     private readonly IServiceProvider _serviceProvider;
-    public  EMaktabContext Context { get; }
-    public UnitOfWork(IServiceProvider serviceProvider,EMaktabContext _Context)
+    private readonly EMaktabContext context;
+    public UnitOfWork(IServiceProvider serviceProvider,
+        EMaktabContext context)
     {
-        Context = _Context;
-        
         _serviceProvider = serviceProvider;
-    }
-
-   
-    
-    public IDbContextTransaction CurrentTransaction { get => Context.Database.CurrentTransaction; }
-    public TRepository GetRepository<TRepository>() => _serviceProvider.GetRequiredService<TRepository>();
-
-    public IDbContextTransaction BeginTransaction()
-    {
-        return Context.Database.BeginTransaction();
-    }
-
-    public void Save()
-    {
-        Context.SaveChanges();
+        this.context = context;
     }
 
     public void Commit()
     {
-        Save();
-        if (Context.Database.CurrentTransaction != null)
-            Context.Database.CurrentTransaction.Commit();
+        if (context.Database.CurrentTransaction != null)
+        {
+            context.Database.CurrentTransaction.Commit();
+        }
     }
 
     public void Rollback()
     {
-        if (Context.Database.CurrentTransaction != null)
-            Context.Database.CurrentTransaction.Rollback();
+        if (context.Database.CurrentTransaction != null)
+        {
+            context.Database.CurrentTransaction.Rollback();
+        }
     }
+
+    public IDbContextTransaction BeginTransaction()
+    {
+        return context.Database.BeginTransaction();
+    }
+
+    public IDbContextTransaction CurrencyTransaction => context.Database.CurrentTransaction;
 }

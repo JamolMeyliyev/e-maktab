@@ -3,9 +3,10 @@ using e_maktab.BizLogicLayer.Services;
 using e_maktab.DataLayer.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 using e_maktab.DataLayer;
-using e_maktab.BizLogicLayer.Services.Admin.Organization.Mapper;
+
 using e_maktab.BizLogicLayer.Services.Admin;
 using e_maktab.BizLogicLayer.Service;
+using e_maktab.BizLogicLayer.Mapper;
 
 namespace e_maktab.Extensions;
 
@@ -20,9 +21,13 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IRoleRepository, RoleRepository>();
         services.AddScoped<IRoleModuleRepository, RoleModuleRepository>();
         services.AddScoped<IUserRoleRepository, UserRoleRepository>();
-
-        
-
+        services.AddScoped<ITeacherRepository, TeacherRepository>();
+        services.AddScoped<IScienceRepository, ScienceRepository>();
+        services.AddScoped<IClassRepository, ClassRepository>();
+        services.AddScoped<IHomeWorkRepository, HomeWorkRepository>();
+        services.AddScoped<IOrganizationRepository, OrganizationRepository>();
+        services.AddScoped<ILessonRepository, LessonRepository>();
+        services.AddScoped<IModuleRepository, ModuleRepository>();
         return services;
     }
 
@@ -39,10 +44,13 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IClassService, ClassService>();
         services.AddScoped<IOrganizationService,OrganizationService>();
         services.AddScoped<ITeacherService, TeacherService>();
-
-        //services.AddAutoMapper(typeof(UserMapper));
-
+        
+        services.AddAutoMapper(typeof(UserMapper));
+        services.AddAutoMapper(typeof(OrganizationMapper));
+        services.AddAutoMapper(typeof(TeacherMapper));
+        services.AddAutoMapper(typeof(ClassMapper));
         return services;
+       
     }
 }
 

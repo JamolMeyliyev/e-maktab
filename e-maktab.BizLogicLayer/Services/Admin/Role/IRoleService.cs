@@ -1,4 +1,5 @@
-﻿using e_maktab.BizLogicLayer.Models.Role;
+﻿using e_maktab.BizLogicLayer.Models;
+using e_maktab.BizLogicLayer.Models.Role;
 using StatusGeneric;
 using System;
 using System.Collections.Generic;
@@ -9,12 +10,12 @@ using WEBASE.Models;
 
 namespace e_maktab.BizLogicLayer.Services;
 
-public interface IRoleService : IStatusGeneric
+public interface IRoleService 
 {
-    PagedResult<RoleListDto> GetList(RoleListSortFilterOptions dto);
-    RoleDto Get(int id);
-    public SelectList<int> AsSelectList(int? organizationId, int userTypeId);
-    HaveId<int> Create(CreateRoleDto dto);
-    void Update(UpdateRoleDto dto);
-    void Delete(int id);
+    List<RoleDto> GetList(RoleListSortFilterOptions dto);
+    Task<RoleDto> Get(int id);
+    public List<RoleAsSelectListDto> AsSelectList();
+    Task<int> Create(CreateRoleDto dto);
+    Task Update(UpdateRoleDto dto);
+    Task Delete(int id);
 }

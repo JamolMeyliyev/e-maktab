@@ -20,9 +20,6 @@ public partial class RoleModule
     [Column("module_id")]
     public int ModuleId { get; set; }
 
-    [Column("date_of_created", TypeName = "timestamp without time zone")]
-    public DateTime DateOfCreated { get; set; }
-
     [ForeignKey("ModuleId")]
     [InverseProperty("RoleModules")]
     public virtual Module Module { get; set; } = null!;

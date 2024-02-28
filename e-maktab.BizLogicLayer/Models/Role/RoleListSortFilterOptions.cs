@@ -1,8 +1,8 @@
 ﻿using WEBASE.Models;
 
-namespace e_maktab.BizLogicLayer.Models.Role;
+namespace e_maktab.BizLogicLayer.Models;
 
-public class RoleListSortFilterOptions : SortFilterPageOptions
+public class RoleListSortFilterOptions
 {
 
 }

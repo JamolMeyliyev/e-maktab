@@ -23,11 +23,9 @@ public partial class UserRole
     [Column("state_id")]
     public int StateId { get; set; }
 
-    [Column("date_of_created", TypeName = "timestamp without time zone")]
-    public DateTime DateOfCreated { get; set; }
-
-    [Column("date_of_modified", TypeName = "timestamp without time zone")]
-    public DateTime? DateOfModified { get; set; }
+    [ForeignKey("RoleId")]
+    [InverseProperty("UserRoles")]
+    public virtual Role Role { get; set; } = null!;
 
     [ForeignKey("StateId")]
     [InverseProperty("UserRoles")]

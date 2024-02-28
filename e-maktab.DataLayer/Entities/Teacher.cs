@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace e_maktab.DataLayer.Entities;
 
+
 [Table("teacher")]
 public partial class Teacher
 {
@@ -21,10 +22,6 @@ public partial class Teacher
     [StringLength(300)]
     public string LastName { get; set; } = null!;
 
-    [Column("password_hash")]
-    [StringLength(250)]
-    public string PasswordHash { get; set; } = null!;
-
     [Column("email")]
     [StringLength(250)]
     public string? Email { get; set; }
@@ -39,18 +36,14 @@ public partial class Teacher
     [Column("state_id")]
     public int StateId { get; set; }
 
-    [Column("class_id")]
-    public int ClassId { get; set; }
-
     [Column("date_of_created", TypeName = "timestamp without time zone")]
     public DateTime DateOfCreated { get; set; }
 
     [Column("date_of_modified", TypeName = "timestamp without time zone")]
     public DateTime? DateOfModified { get; set; }
 
-    [ForeignKey("ClassId")]
-    [InverseProperty("Teachers")]
-    public virtual Class Class { get; set; } = null!;
+    [InverseProperty("Teacher")]
+    public virtual ICollection<Class> Classes { get; set; } = new List<Class>();
 
     [InverseProperty("Teacher")]
     public virtual ICollection<Homework> Homeworks { get; set; } = new List<Homework>();

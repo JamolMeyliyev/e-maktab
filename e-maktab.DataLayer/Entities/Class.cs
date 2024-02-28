@@ -16,22 +16,22 @@ public partial class Class
     [Column("teacher_id")]
     public int TeacherId { get; set; }
 
+    [Column("state_id")]
+    public int StateId { get; set; }
+
     [Column("short_name")]
-    [StringLength(50)]
-    public string? ShortName { get; set; }
+    [StringLength(250)]
+    public string ShortName { get; set; } = null!;
 
     [Column("full_name")]
-    [StringLength(50)]
-    public string? FullName { get; set; }
+    [StringLength(250)]
+    public string FullName { get; set; } = null!;
 
     [Column("date_of_created", TypeName = "timestamp without time zone")]
     public DateTime DateOfCreated { get; set; }
 
     [Column("date_of_modified", TypeName = "timestamp without time zone")]
     public DateTime? DateOfModified { get; set; }
-
-    [Column("state_id")]
-    public int StateId { get; set; }
 
     [InverseProperty("Class")]
     public virtual ICollection<Lesson> Lessons { get; set; } = new List<Lesson>();
@@ -40,9 +40,9 @@ public partial class Class
     [InverseProperty("Classes")]
     public virtual EnumState State { get; set; } = null!;
 
-    [InverseProperty("Class")]
-    public virtual ICollection<Teacher> Teachers { get; set; } = new List<Teacher>();
-
+    [ForeignKey("TeacherId")]
+    [InverseProperty("Classes")]
+    public virtual Teacher Teacher { get; set; } = null!;
     [InverseProperty("Class")]
     public virtual ICollection<User> Users { get; set; } = new List<User>();
 }

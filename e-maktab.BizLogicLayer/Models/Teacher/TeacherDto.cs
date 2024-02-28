@@ -19,7 +19,6 @@ public class TeacherDto
     public string? PhoneNumber { get; set; }
     public int? OrganizationId { get; set; }
     public int StateId { get; set; }
-    public int ClassId { get; set; }
     public DateTime DateOfCreated { get; set; }
     public DateTime? DateOfModified { get; set; }
     public virtual ICollection<Homework> Homeworks { get; set; } 

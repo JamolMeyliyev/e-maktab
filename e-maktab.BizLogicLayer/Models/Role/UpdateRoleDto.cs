@@ -8,4 +8,10 @@ namespace e_maktab.BizLogicLayer.Models.Role;
 
 public class UpdateRoleDto
 {
+    public int Id { get; set; }
+    public string? ShortName { get; set; } = null!;
+    public string? FullName { get; set; } = null!;
+    public bool? IsAdmin { get; set; }
+    public int? StateId { get; set; }
+    public List<int>? Modules { get; set; }
 }
