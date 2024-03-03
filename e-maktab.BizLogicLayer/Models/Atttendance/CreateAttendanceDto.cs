@@ -8,5 +8,6 @@ namespace e_maktab.BizLogicLayer.Models.Atttendance;
 
 public class CreateAttendanceDto
 {
-
+    public string ShortName { get; set; }
+    public string FullName { get; set; }
 }

@@ -9,5 +9,5 @@ namespace e_maktab.BizLogicLayer.Models;
 public class RoleAsSelectListDto
 {
     public int Id { get; set; }
-    public string ShortName { get; set; }
+    public string FullName { get; set; }
 }

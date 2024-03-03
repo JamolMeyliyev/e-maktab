@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using e_maktab.BizLogicLayer.Models;
+using e_maktab.BizLogicLayer.Models.Organization;
 using WEBASE.Models;
 
 namespace e_maktab.BizLogicLayer.Services.Admin;

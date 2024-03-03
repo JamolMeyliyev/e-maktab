@@ -10,7 +10,7 @@ namespace e_maktab.BizLogicLayer.Models;
 public class CreateClassDto
 {
     public int TeacherId { get; set; }
-    public string? ShortName { get; set; }
-    public string? FullName { get; set; }
+    public required string ShortName { get; set; }
+    public required string FullName { get; set; }
     public int StateId { get; set; }
 }

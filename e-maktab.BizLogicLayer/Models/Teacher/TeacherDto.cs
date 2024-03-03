@@ -13,17 +13,19 @@ namespace e_maktab.BizLogicLayer.Models;
 public class TeacherDto
 {
     public int Id { get; set; }
-    public string FirstName { get; set; } = null!;
-    public string LastName { get; set; } = null!;
+    public string FirstName { get; set; } 
+    public string LastName { get; set; }
     public string? Email { get; set; }
     public string? PhoneNumber { get; set; }
     public int? OrganizationId { get; set; }
+    public string Organization { get; set; }
     public int StateId { get; set; }
-    public DateTime DateOfCreated { get; set; }
-    public DateTime? DateOfModified { get; set; }
-    public virtual ICollection<Homework> Homeworks { get; set; } 
-    public virtual ICollection<Lesson> Lessons { get; set; } 
+    public string State { get; set; }
 
- 
- 
+    public List<HomeworkDto> Homeworks { get; set; } = new List<HomeworkDto>();
+    public List<ClassDto> Classes { get; set; } = new List<ClassDto>();
+    public List<LessonDto> Lessons { get; set; } = new List<LessonDto>();
+
+
+
 }

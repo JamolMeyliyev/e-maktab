@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using e_maktab.BizLogicLayer.Models.Role;
+using System;
+
 
 namespace e_maktab.BizLogicLayer.Models;
 
@@ -17,4 +15,6 @@ public class UserDto
     public int? OrganizationId { get; set; }
     public bool IsTeacher { get; set; }
     public int StateId { get; set; }
+    public List<LessonDto> Lessons { get; set; } = new List<LessonDto>();
+    public List<RoleDto> Roles { get; set; } = new List<RoleDto>();
 }

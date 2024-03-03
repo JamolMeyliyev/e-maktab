@@ -12,5 +12,5 @@ public class CreateRoleDto
     public string FullName { get; set; } = null!;
     public bool IsAdmin { get; set; }
     public int StateId { get; set; }
-    public List<int> Modules { get; set; }
+    public List<int> Modules { get; set; } = new List<int>();
 }

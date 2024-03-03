@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 
@@ -11,10 +12,11 @@ public class ClassDto
 {
     public int Id { get; set; }
     public int TeacherId { get; set; }
-    public string? ShortName { get; set; }
-    public string? FullName { get; set; }
-    public DateTime DateOfCreated { get; set; }
-    public DateTime? DateOfModified { get; set; }
+    public string Teacher { get; set; }
     public int StateId { get; set; }
-    
+    public string State { get; set; }
+    public  string ShortName { get; set; }
+    public  string FullName { get; set; }
+    public  List<LessonDto> Lessons { get; set; } = new List<LessonDto>();
+    public virtual List<UserDto> Users { get; set; } = new List<UserDto>();
 }

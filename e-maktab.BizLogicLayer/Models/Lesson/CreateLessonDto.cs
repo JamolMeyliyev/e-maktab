@@ -1,14 +1,10 @@
-﻿using Microsoft.VisualBasic;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
 namespace e_maktab.BizLogicLayer.Models;
 
 public class CreateLessonDto
-{ 
+{
+    public required string Name { get; set; }
     public int ClassId { get; set; }
     public int StateId { get; set; }
     public int ScienceId { get; set; }

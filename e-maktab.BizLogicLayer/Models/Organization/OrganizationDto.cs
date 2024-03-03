@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace e_maktab.BizLogicLayer.Models; 
+namespace e_maktab.BizLogicLayer.Models.Organization;
 public class OrganizationDto
 {
     public int Id { get; set; }
@@ -17,4 +17,5 @@ public class OrganizationDto
     public string? Address { get; set; }
     public string? PhoneNumber { get; set; }
     public int StateId { get; set; }
+    public string State { get; set; }
 }

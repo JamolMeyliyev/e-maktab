@@ -1,4 +1,4 @@
-﻿namespace e_maktab.BizLogicLayer.Models;
+﻿namespace e_maktab.BizLogicLayer.Models.Organization;
 
 public class CreateOrganizationDto
 {

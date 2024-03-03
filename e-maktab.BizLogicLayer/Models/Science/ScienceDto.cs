@@ -12,7 +12,8 @@ namespace e_maktab.BizLogicLayer.Models.Science;
 public class ScienceDto
 {
     public int Id { get; set; }
-    public string ShortName { get; set; } = null!;
-    public string FullName { get; set; } = null!;
+    public string ShortName { get; set; }
+    public string FullName { get; set; }
     public int StateId { get; set; }
+    public string State { get; set; }
 }

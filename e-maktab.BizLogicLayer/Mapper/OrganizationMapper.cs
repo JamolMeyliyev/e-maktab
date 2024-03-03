@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using e_maktab.BizLogicLayer.Models;
+using e_maktab.BizLogicLayer.Models.Organization;
 using e_maktab.DataLayer.Entities;
 using System;
 using System.Collections.Generic;

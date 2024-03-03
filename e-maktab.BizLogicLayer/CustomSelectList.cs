@@ -1,5 +1,6 @@
 ﻿using e_maktab.BizLogicLayer.Models;
 using e_maktab.BizLogicLayer.Models.Atttendance;
+using e_maktab.BizLogicLayer.Models.Organization;
 using e_maktab.BizLogicLayer.Models.Science;
 using e_maktab.DataLayer.Entities;
 using System;

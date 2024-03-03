@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace e_maktab.BizLogicLayer.Models;
+namespace e_maktab.BizLogicLayer.Models.Organization;
 
 public class UpdateOrganizationDto
 {

@@ -12,8 +12,11 @@ public class HomeworkDto
 {
     public int Id { get; set; }
     public int StateId { get; set; }
+    public string State { get; set; }
     public string Title { get; set; } = null!;
     public string FullText { get; set; } = null!;
     public int LessonId { get; set; }
+    public string Lesson { get; set; }
     public int TeacherId { get; set; }
+    public string Teacher { get; set; }
 }

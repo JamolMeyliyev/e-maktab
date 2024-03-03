@@ -1,4 +1,4 @@
-﻿using e_maktab.BizLogicLayer.Models;
+﻿using e_maktab.BizLogicLayer.Models.Organization;
 using e_maktab.BizLogicLayer.Services.Admin;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

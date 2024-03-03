@@ -12,17 +12,14 @@ public partial class Lesson
     [Column("id")]
     public int Id { get; set; }
 
+    [Column("name")]
+    public string Name { get; set; }
+
     [Column("class_id")]
     public int ClassId { get; set; }
 
     [Column("state_id")]
     public int StateId { get; set; }
-
-    [Column("created_date", TypeName = "timestamp without time zone")]
-    public DateTime? CreatedDate { get; set; }
-
-    [Column("end_date", TypeName = "timestamp without time zone")]
-    public DateTime? EndDate { get; set; }
 
     [Column("science_id")]
     public int ScienceId { get; set; }
@@ -30,11 +27,10 @@ public partial class Lesson
     [Column("teacher_id")]
     public int TeacherId { get; set; }
 
-
+    [Column("lesson_day")]
     public DateOnly Day { get; set; }
-    public TimeOnly StartDate { get; set; }
-
-
+    [Column("start_time")]
+    public TimeOnly StartTime { get; set; }
 
 
     [ForeignKey("ClassId")]

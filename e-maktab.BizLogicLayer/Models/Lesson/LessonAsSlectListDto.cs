@@ -10,5 +10,5 @@ public class LessonAsSlectListDto
 {
     public int Id { get; set; }
     public int StateId { get; set; }
-    public int ScienceId { get; set; }
+    public string Lesson { get; set; }
 }
