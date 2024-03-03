@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using e_maktab.BizLogicLayer.Models;
 using e_maktab.BizLogicLayer.Models.Atttendance;
+using e_maktab.BizLogicLayer.Pagination;
 using e_maktab.DataLayer.Entities;
 using e_maktab.DataLayer.Repositories;
 using System;
@@ -38,9 +40,9 @@ public class AttendanceService : IAttendanceService
         await _repos.DeleteAsync(entity);
     }
 
-    public List<AttendanceDto> GetList()
+    public List<AttendanceDto> GetList(AttendanceListSortFilterOptions options)
     {
-        var entities =  _repos.SelectAll().ToList();
+        var entities =  _repos.SelectAll().ToPagedList(options);
         return _mapper.Map<List<AttendanceDto>>(entities);
     }
 

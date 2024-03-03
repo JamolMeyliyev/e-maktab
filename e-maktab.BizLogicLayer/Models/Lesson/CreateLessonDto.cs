@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,4 +13,7 @@ public class CreateLessonDto
     public int StateId { get; set; }
     public int ScienceId { get; set; }
     public int TeacherId { get; set; }
+    public DateOnly Day { get; set; }
+    public TimeOnly StartDate { get; set; }
+    
 }

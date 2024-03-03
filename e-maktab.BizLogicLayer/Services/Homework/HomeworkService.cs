@@ -1,13 +1,8 @@
 ﻿using AutoMapper;
 using e_maktab.BizLogicLayer.Models;
-using e_maktab.BizLogicLayer.Models.Science;
 using e_maktab.DataLayer.Entities;
 using e_maktab.DataLayer.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace e_maktab.BizLogicLayer.Services;
 
@@ -38,9 +33,10 @@ public class HomeworkService : IHomeworkService
         await _repos.DeleteAsync(entity);
     }
 
-    public Task<HomeworkDto> Get(int id)
+    public async Task<HomeworkDto> Get(int id)
     {
-        throw new NotImplementedException();
+        var entity = await _repos.SelectByIdAsync(id);
+        return _mapper.Map<HomeworkDto>(entity);
     }
 
     public List<HomeworkDto> GetList(HomeworkListSortFilterOptions options)

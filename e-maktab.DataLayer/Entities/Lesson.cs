@@ -30,6 +30,13 @@ public partial class Lesson
     [Column("teacher_id")]
     public int TeacherId { get; set; }
 
+
+    public DateOnly Day { get; set; }
+    public TimeOnly StartDate { get; set; }
+
+
+
+
     [ForeignKey("ClassId")]
     [InverseProperty("Lessons")]
     public virtual Class Class { get; set; } = null!;

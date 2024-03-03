@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace e_maktab.BizLogicLayer.Mapper;
-
-public class HomeworkMapper
+namespace e_maktab.BizLogicLayer.Middleware
 {
+    internal class ErrorHandlerMiddleware
+    {
+    }
 }

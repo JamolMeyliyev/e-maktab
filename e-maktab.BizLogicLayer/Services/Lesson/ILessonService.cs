@@ -15,5 +15,5 @@ public interface ILessonService
     Task<int> Create(CreateLessonDto dto);
     Task Update(UpdateLessonDto dto);
     Task Delete(int id);
-    Task GetLessonStudents(int id);
+    
 }

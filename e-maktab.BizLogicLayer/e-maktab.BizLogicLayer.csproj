@@ -30,9 +30,4 @@
     <ProjectReference Include="..\e-maktab.DataLayer\e-maktab.DataLayer.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Middleware\" />
-    <Folder Include="Pagination\" />
-  </ItemGroup>
-
 </Project>
