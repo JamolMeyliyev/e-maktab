@@ -6,7 +6,7 @@ public interface IGenericRepository<TEntity>
 {
     ValueTask<TEntity> InsertAsync(TEntity entity);
     IQueryable<TEntity> SelectAll();
-    ValueTask<TEntity> SelectByIdAsync(int id);
+    ValueTask<TEntity?> SelectByIdAsync(int id);
     ValueTask<TEntity> SelectByIdWithDetailsAsync(
         Expression<Func<TEntity, bool>> expression,
         string[] includes);

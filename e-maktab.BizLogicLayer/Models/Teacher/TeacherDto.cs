@@ -22,10 +22,7 @@ public class TeacherDto
     public int StateId { get; set; }
     public string State { get; set; }
 
-    public List<HomeworkDto> Homeworks { get; set; } = new List<HomeworkDto>();
-    public List<ClassDto> Classes { get; set; } = new List<ClassDto>();
-    public List<LessonDto> Lessons { get; set; } = new List<LessonDto>();
-
-
-
+    //public List<HomeworkDto> Homeworks { get; set; } = new List<HomeworkDto>();
+    //public List<ClassDto> Classes { get; set; } = new List<ClassDto>();
+    //public List<LessonDto> Lessons { get; set; } = new List<LessonDto>();
 }

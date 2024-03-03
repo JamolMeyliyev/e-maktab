@@ -92,7 +92,7 @@ public class ReportService : IReportService
             
             var lessonOfday = lessons
                 .Where(s => s.Day.Month == correctDay.Month && s.Day.Day == correctDay.Day)
-                .OrderBy(s => s.StartDate);
+                .OrderBy(s => s.StartTime);
             var daySchedule = new ScheduleDayDto()
             {
                 DayOfWeekName = WeekDay(ed),
@@ -131,7 +131,7 @@ public class ReportService : IReportService
             
             var lessonOfday = lessons
                 .Where(s => s.Day.Month == correctDay.Month && s.Day.Day == correctDay.Day)
-                .OrderBy(s => s.StartDate);
+                .OrderBy(s => s.StartTime);
             var daySchedule = new ScheduleDayDto()
             {
                 DayOfWeekName = WeekDay(ed),

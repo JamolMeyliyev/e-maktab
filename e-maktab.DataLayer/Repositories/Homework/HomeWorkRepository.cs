@@ -1,10 +1,6 @@
 ﻿using e_maktab.DataLayer.Context;
 using e_maktab.DataLayer.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace e_maktab.DataLayer.Repositories;
 
@@ -12,5 +8,23 @@ public class HomeWorkRepository : GenericRepository<Homework>, IHomeWorkReposito
 {
     public HomeWorkRepository(EMaktabContext appDbContext) : base(appDbContext)
     {
+    }
+    public override IQueryable<Homework> SelectAll()
+    {
+        var entities = base.SelectAll();
+        return entities
+            .Include(s => s.Teacher)
+            .Include(s => s.Lesson)
+            .Include(s => s.State);
+    }
+    public override async ValueTask<Homework?> SelectByIdAsync(int id)
+    {
+        return await this
+            .SelectAll()
+            .Where(s => s.Id == id)
+            .Include(s => s.Teacher)
+            .Include(s => s.Lesson)
+            .Include( s => s.State)
+            .FirstOrDefaultAsync();
     }
 }

@@ -16,4 +16,6 @@ public class RoleDto
     public bool IsAdmin { get; set; }
     public int StateId { get; set; }
     public string State { get; set; }
+
+    public List<ModuleDto> Modules { get; set; }
 }

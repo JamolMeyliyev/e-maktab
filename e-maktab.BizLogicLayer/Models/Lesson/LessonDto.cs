@@ -10,7 +10,6 @@ public class LessonDto
     public int Id { get; set; }
     public string Name { get; set; }
     public int ClassId { get; set; }
-    public string Class { get; set; }
     public int StateId { get; set; }
     public string State { get; set; }
     public int ScienceId { get; set; }
@@ -19,11 +18,7 @@ public class LessonDto
     public string Teacher { get; set; }
     public DateOnly Day { get; set; }
     public TimeOnly StartTime { get; set; }
-
     public List<HomeworkDto> Homeworks { get; set; } = new List<HomeworkDto>();
-
-  
     
-    public List<UserLessonAttendance> UserLessonAttendances { get; set; } = new List<UserLessonAttendance>();
 
 }

@@ -9,5 +9,5 @@ namespace e_maktab.DataLayer.Repositories;
 
 public interface IClassRepository:IGenericRepository<Class>
 {
-    IQueryable<Class> GetAll();
+  
 }

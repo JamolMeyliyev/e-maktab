@@ -17,8 +17,18 @@ public class LessonRepository : GenericRepository<Lesson>, ILessonRepository
     }
     public override IQueryable<Lesson> SelectAll()
     {
-       return base.SelectAll().Include(s => s.Class).Include(s => s.Science);
+        var entities = base.SelectAll();
+        return
+             entities
+            
+            .Include(s => s.Homeworks).ThenInclude(s => s.Teacher)
+            .Include(s => s.Teacher)
+            .Include(s => s.Science)
+            .Include(s => s.State);
     }
-       
+    public override async ValueTask<Lesson?> SelectByIdAsync(int id)
+    {
+        return await this.SelectAll().FirstOrDefaultAsync(x => x.Id == id);
+    }
 
 }

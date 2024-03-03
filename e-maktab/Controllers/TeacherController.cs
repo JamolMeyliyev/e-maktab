@@ -34,8 +34,8 @@ public class TeacherController : ControllerBase
     {
         try
         {
-            _service.AsSelectList();
-            return Ok();
+            
+            return Ok(_service.AsSelectList());
         }
         catch (Exception ex)
         {

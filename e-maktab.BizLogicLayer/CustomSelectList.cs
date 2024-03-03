@@ -3,11 +3,7 @@ using e_maktab.BizLogicLayer.Models.Atttendance;
 using e_maktab.BizLogicLayer.Models.Organization;
 using e_maktab.BizLogicLayer.Models.Science;
 using e_maktab.DataLayer.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace e_maktab.BizLogicLayer;
 
@@ -84,7 +80,8 @@ public static class CustomSelectList
          {
              Id = val.Id,
              StateId = val.StateId,
-             ScienceId= val.ScienceId
+             Name = val.Name,
+             
          }
 
          ).ToList();
@@ -120,9 +117,7 @@ public static class CustomSelectList
          new RoleAsSelectListDto
          {
              Id = val.Id,
-             ShortName = val.ShortName,
-             
-
+             FullName = val.FullName
          }
 
          ).ToList();

@@ -31,7 +31,7 @@ public abstract class GenericRepository<TEntity> : IGenericRepository<TEntity>
     public virtual IQueryable<TEntity> SelectAll() =>
         this.appDbContext.Set<TEntity>();
 
-    public virtual async ValueTask<TEntity> SelectByIdAsync(int id) =>
+    public virtual async ValueTask<TEntity?> SelectByIdAsync(int id) =>
         await this.appDbContext.Set<TEntity>().FindAsync(id);
 
     public virtual async ValueTask<TEntity> SelectByIdWithDetailsAsync(

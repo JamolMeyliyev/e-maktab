@@ -17,6 +17,6 @@ public class ClassDto
     public string State { get; set; }
     public  string ShortName { get; set; }
     public  string FullName { get; set; }
-    public  List<LessonDto> Lessons { get; set; } = new List<LessonDto>();
+    public  List<LessonDto> Lessons { get; set; } 
     public virtual List<UserDto> Users { get; set; } = new List<UserDto>();
 }

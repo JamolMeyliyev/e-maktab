@@ -11,12 +11,16 @@ public class RoleMapper:Profile
     public RoleMapper() 
     {
         CreateMap<CreateRoleDto, Role>().ForMember(s => s.DateOfCreated, s => s.MapFrom(p => DateTime.Now));
-        CreateMap<Role, RoleDto>().ForMember(s => s.Modules, s => s.MapFrom(s => s.RoleModules.Select(s => 
+        CreateMap<Role, RoleDto>()
+            .ForMember(s => s.State,s => s.MapFrom(s => s.State.FullName))
+            .ForMember(s => s.Modules, s => s.MapFrom(s => s.RoleModules.Select(s => 
         new ModuleDto
         {
             ShortName = s.Module.ShortName,
             Id = s.Module.Id,
-            StateId= s.Module.StateId
+            StateId= s.Module.StateId,
+            State = s.Module.State.FullName
+            
         }
         
         )));
