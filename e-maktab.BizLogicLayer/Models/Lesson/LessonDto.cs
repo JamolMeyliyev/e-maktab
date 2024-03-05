@@ -1,7 +1,5 @@
 ﻿
 
-using e_maktab.DataLayer.Entities;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace e_maktab.BizLogicLayer.Models;
 
