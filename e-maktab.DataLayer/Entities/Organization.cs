@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 
 namespace e_maktab.DataLayer.Entities;
@@ -44,11 +45,14 @@ public partial class Organization
 
     [ForeignKey("StateId")]
     [InverseProperty("Organizations")]
+    [JsonIgnore]
     public virtual EnumState State { get; set; } = null!;
 
     [InverseProperty("Organization")]
+    [JsonIgnore]
     public virtual ICollection<Teacher> Teachers { get; set; } = new List<Teacher>();
 
     [InverseProperty("Organization")]
+    [JsonIgnore]
     public virtual ICollection<User> Users { get; set; } = new List<User>();
 }

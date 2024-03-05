@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 
 namespace e_maktab.DataLayer.Entities;
@@ -33,12 +34,15 @@ public partial class Role
     public DateTime? DateOfModified { get; set; }
 
     [InverseProperty("Role")]
+    [JsonIgnore]
     public virtual ICollection<RoleModule> RoleModules { get; set; } = new List<RoleModule>();
 
     [ForeignKey("StateId")]
     [InverseProperty("Roles")]
+    [JsonIgnore]
     public virtual EnumState State { get; set; } = null!;
 
     [InverseProperty("Role")]
+    [JsonIgnore]
     public virtual ICollection<UserRole> UserRoles { get; set; } = new List<UserRole>();
 }

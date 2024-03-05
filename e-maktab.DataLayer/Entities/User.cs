@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using e_maktab.DataLayer.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -33,9 +34,11 @@ public partial class User
     [Column("phone_number")]
     [StringLength(50)]
     public string? PhoneNumber { get; set; }
+    [Column("login")]
+    public string Login { get; set; }
 
     [Column("organization_id")]
-    public int? OrganizationId { get; set; }
+    public int OrganizationId { get; set; }
 
     [Column("state_id")]
     public int StateId { get; set; }
@@ -51,19 +54,24 @@ public partial class User
 
     [ForeignKey("ClassId")]
     [InverseProperty("Users")]
+    [JsonIgnore]
     public virtual Class Class { get; set; } = null!;
 
     [ForeignKey("OrganizationId")]
     [InverseProperty("Users")]
+    [JsonIgnore]
     public virtual Organization? Organization { get; set; }
 
     [ForeignKey("StateId")]
     [InverseProperty("Users")]
+    [JsonIgnore]
     public virtual EnumState State { get; set; } = null!;
 
     [InverseProperty("User")]
+    [JsonIgnore]
     public virtual ICollection<UserLessonAttendance> UserLessonAttendances { get; set; } = new List<UserLessonAttendance>();
 
     [InverseProperty("User")]
+    [JsonIgnore]
     public virtual ICollection<UserRole> UserRoles { get; set; } = new List<UserRole>();
 }

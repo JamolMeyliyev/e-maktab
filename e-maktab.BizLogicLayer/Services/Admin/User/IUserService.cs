@@ -14,9 +14,10 @@ namespace e_maktab.BizLogicLayer.Services;
 public interface IUserService
 {
     List<UserDto> GetList(UserListSortFilterOptions dto);
-    UserDto Get(int id);
+    Task<UserDto> Get(int id);
     public List<UserAsSelectListDto> AsSelectList();
     Task<int> Create(CreateUserDto dto);
     Task Update(UpdateUserDto dto);
     Task Delete(int id);
+    
 }

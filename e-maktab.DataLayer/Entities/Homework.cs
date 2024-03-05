@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-
-
+using System.Text.Json.Serialization;
 
 namespace e_maktab.DataLayer.Entities;
 
@@ -33,13 +32,16 @@ public partial class Homework
 
     [ForeignKey("LessonId")]
     [InverseProperty("Homeworks")]
+    [JsonIgnore]
     public virtual Lesson Lesson { get; set; } = null!;
 
     [ForeignKey("StateId")]
     [InverseProperty("Homeworks")]
+    [JsonIgnore]
     public virtual EnumState State { get; set; } = null!;
 
     [ForeignKey("TeacherId")]
     [InverseProperty("Homeworks")]
+    [JsonIgnore]
     public virtual Teacher Teacher { get; set; } = null!;
 }

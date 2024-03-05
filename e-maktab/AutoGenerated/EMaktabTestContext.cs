@@ -52,8 +52,6 @@ public partial class EMaktabTestContext : DbContext
         modelBuilder.Entity<Attendance>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("attendance_pkey");
-
-            entity.Property(e => e.Id).ValueGeneratedNever();
         });
 
         modelBuilder.Entity<Class>(entity =>
@@ -98,8 +96,6 @@ public partial class EMaktabTestContext : DbContext
         modelBuilder.Entity<Lesson>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("lesson_pkey");
-
-            entity.Property(e => e.Id).ValueGeneratedNever();
 
             entity.HasOne(d => d.Class).WithMany(p => p.Lessons)
                 .OnDelete(DeleteBehavior.ClientSetNull)
@@ -204,8 +200,6 @@ public partial class EMaktabTestContext : DbContext
         modelBuilder.Entity<UserLessonAttendance>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("user_lesson_attendance_pkey");
-
-            entity.Property(e => e.Id).ValueGeneratedNever();
 
             entity.HasOne(d => d.Attendance).WithMany(p => p.UserLessonAttendances)
                 .OnDelete(DeleteBehavior.ClientSetNull)

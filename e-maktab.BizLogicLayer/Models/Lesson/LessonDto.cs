@@ -16,7 +16,7 @@ public class LessonDto
     public string Science { get; set; }
     public int TeacherId { get; set; }
     public string Teacher { get; set; }
-    public DateOnly Day { get; set; }
+    public DateOnly LessonDay { get; set; }
     public TimeOnly StartTime { get; set; }
     public List<HomeworkDto> Homeworks { get; set; } = new List<HomeworkDto>();
     

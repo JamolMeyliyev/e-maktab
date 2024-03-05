@@ -30,4 +30,8 @@
     <ProjectReference Include="..\e-maktab.DataLayer\e-maktab.DataLayer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\Admin\Auth\" />
+  </ItemGroup>
+
 </Project>

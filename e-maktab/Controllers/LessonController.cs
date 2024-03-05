@@ -41,7 +41,7 @@ public class LessonController : ControllerBase
         }
     }
     [HttpPost]
-    public async Task<IActionResult> Create([FromBody] CreateLessonDto dto)
+    public async Task<IActionResult> Create( CreateLessonDto dto)
     {
         try
         {

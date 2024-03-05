@@ -40,6 +40,7 @@ public class LessonAttendanceService : ILessonAttendanceService
                 LessonId = dto.LessonId,
                 AttendanceId = at.AttendanceId,
                 UserId = at.UserId,
+                StateId = 1
 
             };
             await _userLAtRepos.InsertAsync(entity);

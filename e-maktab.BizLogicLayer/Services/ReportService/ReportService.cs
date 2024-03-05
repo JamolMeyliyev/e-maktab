@@ -32,7 +32,7 @@ public class ReportService : IReportService
         List<UserLessonAttendance> result = new List<UserLessonAttendance>();
         var month = DateTime.Now.Month;
         var attendances = _userLeAtRepos.SelectAll().Where(s => s.UserId == userId);
-        var lessons = _lessonRepos.SelectAll().Where(s => s.Day  >= fromDate && s.Day<=toDate).ToList();
+        var lessons = _lessonRepos.SelectAll().Where(s => s.LessonDay  >= fromDate && s.LessonDay <=toDate).ToList();
 
         foreach (var lesson in lessons)
         {
@@ -49,7 +49,7 @@ public class ReportService : IReportService
         var lessons = await _lesAtService.GetUserLessons(userId);
         foreach(var lesson in lessons)
         {
-            if (lesson.Day.Month == month)
+            if (lesson.LessonDay.Month == month)
             {
                 result.Add(_userLeAtRepos.SelectAll().Where(s => s.LessonId == lesson.Id && s.UserId == userId).First());
             }
@@ -63,11 +63,12 @@ public class ReportService : IReportService
         List<UserLessonAttendance> result = new List<UserLessonAttendance>();
         var month = DateTime.Now.Month;
         var attendances =  _userLeAtRepos.SelectAll().Where(s => s.UserId == userId);
-        var lessons = _lessonRepos.SelectAll().Where(s => s.Day.Month == month).ToList();
+        var lessons = _lessonRepos.SelectAll().ToList();
 
         foreach(var lesson in lessons)
         {
-            result.Concat(attendances.Where(s => s.LessonId == lesson.Id));
+            var added = attendances.Where(s => s.LessonId == lesson.Id).ToList();
+            result.AddRange(added);
         }
        
         return result;
@@ -83,24 +84,35 @@ public class ReportService : IReportService
             day = 1;
             correctDay = DateTime.Now.AddDays(1);
         }
-       
-        var result = new ScheduleDto();
+
+        var result = new ScheduleDto()
+        {
+            Days = new List<ScheduleDayDto>()
+        };
         var lessons = await _lesAtService.GetUserLessons(userId);
         
         for(int ed = day; ed <= 6; ed++)
         {
             
             var lessonOfday = lessons
-                .Where(s => s.Day.Month == correctDay.Month && s.Day.Day == correctDay.Day)
-                .OrderBy(s => s.StartTime);
-            var daySchedule = new ScheduleDayDto()
-            {
-                DayOfWeekName = WeekDay(ed),
-                Lessons = lessons
+                .Where(s => s.LessonDay.Month == correctDay.Month && s.LessonDay.Day == correctDay.Day)
+                .OrderBy(s => s.StartTime).ToList();
+            if(lessonOfday is  null || lessonOfday.Count == 0)
+            { 
                 
-            };
+            }
+            else
+            {
+                var daySchedule = new ScheduleDayDto()
+                {
+                    DayOfWeekName = WeekDay(ed),
+                    Lessons = lessonOfday
 
-            result.Days.Add(daySchedule);
+                };
+
+                result.Days.Add(daySchedule);
+            }
+            
 
             correctDay = correctDay.AddDays(1);
 
@@ -130,7 +142,7 @@ public class ReportService : IReportService
         {
             
             var lessonOfday = lessons
-                .Where(s => s.Day.Month == correctDay.Month && s.Day.Day == correctDay.Day)
+                .Where(s => s.LessonDay.Month == correctDay.Month && s.LessonDay.Day == correctDay.Day)
                 .OrderBy(s => s.StartTime);
             var daySchedule = new ScheduleDayDto()
             {

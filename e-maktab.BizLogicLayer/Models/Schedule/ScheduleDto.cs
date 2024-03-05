@@ -8,7 +8,7 @@ namespace e_maktab.BizLogicLayer.Models;
 
 public class ScheduleDto
 {
-   public List<ScheduleDayDto> Days { get; set; }
+   public List<ScheduleDayDto> Days { get; set; } = new List<ScheduleDayDto>();
 
 }
 
@@ -16,6 +16,6 @@ public class ScheduleDayDto
 {
     //public DateOnly Date { get; set; }
     public required string DayOfWeekName { get; set; }
-    public List<LessonDto> Lessons { get; set; } = new List<LessonDto>();
+    public List<LessonDto> Lessons { get; set; } 
 
 }

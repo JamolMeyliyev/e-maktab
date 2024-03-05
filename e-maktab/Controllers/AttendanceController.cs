@@ -10,10 +10,12 @@ namespace e_maktab.Controllers;
 [ApiController]
 public class AttendanceController : ControllerBase
 {
-    private IAttendanceService _service;
-    public AttendanceController(IAttendanceService service)
+    private readonly IAttendanceService _service;
+    private readonly ILessonAttendanceService _lAtService;
+    public AttendanceController(IAttendanceService service,ILessonAttendanceService attendanceService)
     {
         _service = service;
+        _lAtService = attendanceService;
     }
     
     [HttpPost]
@@ -55,5 +57,44 @@ public class AttendanceController : ControllerBase
             return BadRequest(ex.Message);
         }
     }
+    [HttpPost]
+    public async Task<IActionResult> GetLessonStudents(int lessonId)
+    {
+        try
+        {
+            return Ok(await _lAtService.GetLessonStudents(lessonId));
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+    [HttpPost]
+    public async Task<IActionResult> GetUserLessons(int userId)
+    {
+        try
+        {
+            return Ok(await _lAtService.GetUserLessons(userId));
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> SaveAttendanceByLesson([FromBody] CreateLessonAttendance dto)
+    {
+        try
+        {
+            await _lAtService.SaveAttendanceByLesson(dto);
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+
 }
 

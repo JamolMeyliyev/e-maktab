@@ -48,6 +48,9 @@ public partial class User
     [Column("class_id")]
     public int ClassId { get; set; }
 
+    [Column("login", TypeName = "character varying")]
+    public string? Login { get; set; }
+
     [ForeignKey("ClassId")]
     [InverseProperty("Users")]
     public virtual Class Class { get; set; } = null!;

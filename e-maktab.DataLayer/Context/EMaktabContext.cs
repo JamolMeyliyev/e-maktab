@@ -45,15 +45,13 @@ public partial class EMaktabContext : DbContext
     public virtual DbSet<UserRole> UserRoles { get; set; }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-            => optionsBuilder.UseNpgsql("Host=localhost;Username=postgres;Password=postgres;Database=e-maktab-test");
+          => optionsBuilder.UseNpgsql("Host=localhost;Username=postgres;Password=postgres;Database=e-maktab-test");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Attendance>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("attendance_pkey");
-
-            entity.Property(e => e.Id).ValueGeneratedNever();
         });
 
         modelBuilder.Entity<Class>(entity =>
@@ -98,8 +96,6 @@ public partial class EMaktabContext : DbContext
         modelBuilder.Entity<Lesson>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("lesson_pkey");
-
-            entity.Property(e => e.Id).ValueGeneratedNever();
 
             entity.HasOne(d => d.Class).WithMany(p => p.Lessons)
                 .OnDelete(DeleteBehavior.ClientSetNull)
@@ -204,8 +200,6 @@ public partial class EMaktabContext : DbContext
         modelBuilder.Entity<UserLessonAttendance>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("user_lesson_attendance_pkey");
-
-            entity.Property(e => e.Id).ValueGeneratedNever();
 
             entity.HasOne(d => d.Attendance).WithMany(p => p.UserLessonAttendances)
                 .OnDelete(DeleteBehavior.ClientSetNull)

@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-
-
+using System.Text.Json.Serialization;
 
 namespace e_maktab.DataLayer.Entities;
 
@@ -26,10 +25,12 @@ public partial class Module
     public int StateId { get; set; }
 
     [InverseProperty("Module")]
+    [JsonIgnore]
     public virtual ICollection<RoleModule> RoleModules { get; set; } = new List<RoleModule>();
 
     [ForeignKey("StateId")]
     [InverseProperty("Modules")]
+    [JsonIgnore]
     public virtual EnumState State { get; set; } = null!;
 }
 

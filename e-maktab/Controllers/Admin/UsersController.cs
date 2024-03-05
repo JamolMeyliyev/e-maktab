@@ -2,6 +2,7 @@
 using e_maktab.BizLogicLayer.Models;
 using e_maktab.BizLogicLayer.Services;
 using e_maktab.Core.Options;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,6 +10,7 @@ namespace e_maktab.Controllers.Admin;
 
 [Route("api/[controller]/[action]")]
 [ApiController]
+
 public class UsersController : ControllerBase
 {
     private readonly IUserService _service;
@@ -16,8 +18,9 @@ public class UsersController : ControllerBase
     {
         _service = service;
     }
-    [HttpGet]
-    [Authorize(moduleCodes: ModuleCode.UserView)]
+    [HttpPost]
+    [Authorize(Roles = "string")]
+    //[Authorize(moduleCodes: ModuleCode.UserView)]
     public async Task<IActionResult> GetList(UserListSortFilterOptions options)
     {
         try
@@ -43,9 +46,9 @@ public class UsersController : ControllerBase
         }
     }
 
-    [HttpPost]
-    [Authorize(moduleCodes:ModuleCode.UserCreate)]
-    public async Task<IActionResult> Create(CreateUserDto dto)
+   [HttpPost]
+   
+    public async Task<IActionResult> Create( [FromBody] CreateUserDto dto)
     {
         try
         {

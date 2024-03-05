@@ -12,21 +12,18 @@ public class UserRepository : GenericRepository<User>, IUserRepository
     }
     public override IQueryable<User> SelectAll()
     {
-        return base
-            .SelectAll()
+        var entities = base.SelectAll();
+        return entities
             .Include(s => s.Class)
             .Include(s => s.UserRoles)
-            .ThenInclude(s => s.Role);
+            .ThenInclude(s => s.Role).ThenInclude(s => s.State)
+            .Include(s => s.State);
     }
     public override async ValueTask<User?> SelectByIdAsync(int id)
     {
-        return await base
+        return await this
             .SelectAll()
-            .Where(s => s.Id == id)
-            .Include(s => s.Class)
-            .Include(s => s.UserRoles)
-            .ThenInclude(s => s.Role)
-            .FirstOrDefaultAsync();
+            .FirstOrDefaultAsync(s => s.Id == id);
     }
 }
 

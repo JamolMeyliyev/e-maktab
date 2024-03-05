@@ -16,6 +16,6 @@ public class OrganizationMapper:Profile
         CreateMap<CreateOrganizationDto, Organization>()
             .ForMember(s => s.DateOfCreated,s => s.MapFrom(s => DateTime.Now))
             ;
-        CreateMap<Organization, OrganizationDto>();
+        CreateMap<Organization, OrganizationDto>().ForMember(s => s.State, s => s.MapFrom(s => s.State.FullName));
     }
 }

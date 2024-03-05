@@ -25,6 +25,7 @@ public class LessonService : ILessonService
     public async Task<int> Create(CreateLessonDto dto)
     {
         var entity = _mapper.Map<Lesson>(dto);
+        
         var result = await _repos.InsertAsync(entity);
         return result.Id;
     }

@@ -18,6 +18,7 @@ public class UserService :  IUserService
     private readonly IRoleService _roleService;
     private readonly IUserRoleRepository _userRoleRepos;
     private readonly ITeacherRepository _teacherRepos;
+    private readonly IAccountService _accService;
 
     public UserService(
         IMapper mapper,
@@ -25,7 +26,8 @@ public class UserService :  IUserService
         IUnitOfWork unitOfWork,
         IRoleService roleService, 
         IUserRoleRepository userRoleRepos,
-        ITeacherRepository teacherRepository)
+        ITeacherRepository teacherRepository,
+        IAccountService accService)
     {
         _mapper = mapper;
         _repos = repos;
@@ -33,6 +35,7 @@ public class UserService :  IUserService
         _roleService = roleService;
         _userRoleRepos = userRoleRepos;
         _teacherRepos = teacherRepository;
+        _accService = accService;
     }
 
     public List<UserAsSelectListDto> AsSelectList()
@@ -42,9 +45,8 @@ public class UserService :  IUserService
 
     public async Task<int> Create(CreateUserDto dto)
     {
-        var entity = _mapper.Map<User>(dto);
 
-        entity.PasswordHash = new PasswordHasher<User>().HashPassword(entity, dto.Password);
+        var userEntity = _accService.Register(dto);
 
         using (var transaction = _unitOfWork.BeginTransaction())
         {
@@ -54,9 +56,10 @@ public class UserService :  IUserService
                 {
                     var teacher = _mapper.Map<Teacher>(dto);
                     var result = await _teacherRepos.InsertAsync(teacher);
-                    await transaction.CommitAsync();                   
+                                       
                 }
-                var user = await _repos.InsertAsync(entity);
+                var user = await _repos.InsertAsync(userEntity);
+
                 if (dto.Roles is not null && dto.Roles.Count > 0)
                 {
                     foreach (var roleId in dto.Roles)
@@ -72,12 +75,12 @@ public class UserService :  IUserService
 
                     }
                 }
-                await transaction.CommitAsync();
+                await _unitOfWork.CurrencyTransaction.CommitAsync();
                 return user.Id;
             }
             catch (Exception ex)
             {
-                transaction.Rollback();
+                _unitOfWork.Rollback();
                 throw new Exception();
             }
         }
@@ -89,14 +92,22 @@ public class UserService :  IUserService
         throw new NotImplementedException();
     }
 
-    public UserDto Get(int id)
+    public async Task<UserDto> Get(int id)
     {
-        throw new NotImplementedException();
+        var entity = await _repos.SelectByIdAsync(id);
+        return _mapper.Map<UserDto>(entity);
     }
 
     public List<UserDto> GetList(UserListSortFilterOptions dto)
     {
-        throw new NotImplementedException();
+        var list = _repos.SelectAll().ToList();
+        return _mapper.Map<List<UserDto>>(list);
+    }
+
+    public async Task<bool> IsAuthenticated(int id)
+    {
+        var entity = await _repos.SelectByIdAsync(id);
+        return entity != null;
     }
 
     public Task Update(UpdateUserDto dto)

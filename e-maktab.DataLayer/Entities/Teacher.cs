@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 
 namespace e_maktab.DataLayer.Entities;
@@ -43,19 +44,24 @@ public partial class Teacher
     public DateTime? DateOfModified { get; set; }
 
     [InverseProperty("Teacher")]
+    [JsonIgnore]
     public virtual ICollection<Class> Classes { get; set; } = new List<Class>();
 
     [InverseProperty("Teacher")]
+    [JsonIgnore]
     public virtual ICollection<Homework> Homeworks { get; set; } = new List<Homework>();
 
     [InverseProperty("Teacher")]
+    [JsonIgnore]
     public virtual ICollection<Lesson> Lessons { get; set; } = new List<Lesson>();
 
     [ForeignKey("OrganizationId")]
     [InverseProperty("Teachers")]
+    [JsonIgnore]
     public virtual Organization? Organization { get; set; }
 
     [ForeignKey("StateId")]
     [InverseProperty("Teachers")]
+    [JsonIgnore]
     public virtual EnumState State { get; set; } = null!;
 }

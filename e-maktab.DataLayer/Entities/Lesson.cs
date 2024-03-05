@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace e_maktab.DataLayer.Entities;
 
@@ -12,14 +13,11 @@ public partial class Lesson
     [Column("id")]
     public int Id { get; set; }
 
-    [Column("name")]
-    public string Name { get; set; }
+    [Column("name", TypeName = "character varying")]
+    public string? Name { get; set; }
 
     [Column("class_id")]
     public int ClassId { get; set; }
-
-    [Column("state_id")]
-    public int StateId { get; set; }
 
     [Column("science_id")]
     public int ScienceId { get; set; }
@@ -27,11 +25,14 @@ public partial class Lesson
     [Column("teacher_id")]
     public int TeacherId { get; set; }
 
+    [Column("state_id")]
+    public int StateId { get; set; }
+
     [Column("lesson_day")]
-    public DateOnly Day { get; set; }
+    public DateOnly LessonDay { get; set; }
+
     [Column("start_time")]
     public TimeOnly StartTime { get; set; }
-
 
     [ForeignKey("ClassId")]
     [InverseProperty("Lessons")]

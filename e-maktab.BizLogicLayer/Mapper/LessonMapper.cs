@@ -10,7 +10,9 @@ public class LessonMapper:Profile
 {
     public LessonMapper()
     {
-
+        CreateMap<CreateLessonDto, Lesson>();
+            //.ForMember(s => s.LessonDay,s => s.MapFrom(s => s.Day))
+            //.ForMember(s => s.StartTime,s => s.MapFrom(s => s.StartDate));
 
         CreateMap<Lesson, LessonDto>().ForMember(s => s.State, s => s.MapFrom(s => s.State.FullName))
             .ForMember(s => s.Science, s => s.MapFrom(s => s.Science.FullName))

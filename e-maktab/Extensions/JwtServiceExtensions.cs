@@ -45,6 +45,7 @@ public static class JwtServiceExtensions
         services.AddScoped<IAccountService,AccountService>();
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IRoleService, RoleService>();
+
        
         services.AddHttpContextAccessor();
         

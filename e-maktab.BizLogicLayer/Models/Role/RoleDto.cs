@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace e_maktab.BizLogicLayer.Models.Role;
 
@@ -16,6 +17,6 @@ public class RoleDto
     public bool IsAdmin { get; set; }
     public int StateId { get; set; }
     public string State { get; set; }
-
+    [JsonIgnore]
     public List<ModuleDto> Modules { get; set; }
 }

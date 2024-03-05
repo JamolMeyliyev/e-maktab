@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-
+using System.Text.Json.Serialization;
 
 namespace e_maktab.DataLayer.Entities;
 
@@ -25,13 +25,16 @@ public partial class UserRole
 
     [ForeignKey("RoleId")]
     [InverseProperty("UserRoles")]
+    [JsonIgnore]
     public virtual Role Role { get; set; } = null!;
 
     [ForeignKey("StateId")]
     [InverseProperty("UserRoles")]
+    [JsonIgnore]
     public virtual EnumState State { get; set; } = null!;
 
     [ForeignKey("UserId")]
     [InverseProperty("UserRoles")]
+    [JsonIgnore]
     public virtual User User { get; set; } = null!;
 }

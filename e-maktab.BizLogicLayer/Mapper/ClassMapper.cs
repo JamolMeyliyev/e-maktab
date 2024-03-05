@@ -19,7 +19,7 @@ public class ClassMapper : Profile
                 Id = s.Id,
                 Name= s.Name,
                 ScienceId= s.ScienceId,
-                Day= s.Day,
+                LessonDay= s.LessonDay,
                 StartTime= s.StartTime, 
                 Science = s.Science.FullName,
                 Teacher = s.Teacher.FirstName +" "+ s.Teacher.LastName,
