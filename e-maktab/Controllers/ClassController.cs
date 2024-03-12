@@ -90,4 +90,16 @@ public class ClassController : ControllerBase
             return BadRequest(ex.Message);
         }
     }
+    [HttpPost]
+    public async Task<IActionResult> AddUser(int classId,int userId)
+    {
+        try
+        {
+            return Ok(await _service.AddUser(classId, userId));
+        }
+        catch(Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
 }

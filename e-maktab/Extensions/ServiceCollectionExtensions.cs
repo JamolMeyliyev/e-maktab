@@ -29,8 +29,9 @@ public static class ServiceCollectionExtensions
         services.AddScoped<ILessonRepository, LessonRepository>();
         services.AddScoped<IModuleRepository, ModuleRepository>();
         services.AddScoped<IAttendanceRepository, AttendanceRepository>();
-        
-        services.AddScoped< IUserLessonAttendanceRepository,UserLessonAttendanceRepository>();
+        services.AddScoped<IUserClassRepository, UserClassRepository>();
+
+        services.AddScoped<IUserLessonAttendanceRepository, UserLessonAttendanceRepository>();
         return services;
     }
 
@@ -45,12 +46,12 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IHomeworkService, HomeworkService>();
         services.AddScoped<ILessonService, LessonService>();
         services.AddScoped<IClassService, ClassService>();
-        services.AddScoped<IOrganizationService,OrganizationService>();
+        services.AddScoped<IOrganizationService, OrganizationService>();
         services.AddScoped<ITeacherService, TeacherService>();
         services.AddScoped<IReportService, ReportService>();
         services.AddScoped<IAttendanceService, AttendanceService>();
-        services.AddScoped<ILessonAttendanceService,LessonAttendanceService>();
-        
+        services.AddScoped<ILessonAttendanceService, LessonAttendanceService>();
+
         services.AddAutoMapper(typeof(UserMapper));
         services.AddAutoMapper(typeof(OrganizationMapper));
         services.AddAutoMapper(typeof(TeacherMapper));
@@ -60,7 +61,7 @@ public static class ServiceCollectionExtensions
         services.AddAutoMapper(typeof(LessonMapper));
         services.AddAutoMapper(typeof(HomeworkMapper));
         return services;
-       
+
     }
 }
 

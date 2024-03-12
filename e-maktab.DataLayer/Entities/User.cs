@@ -34,14 +34,14 @@ public partial class User
     [Column("phone_number")]
     [StringLength(50)]
     public string? PhoneNumber { get; set; }
-    [Column("login")]
-    public string Login { get; set; }
 
     [Column("organization_id")]
     public int OrganizationId { get; set; }
 
     [Column("state_id")]
     public int StateId { get; set; }
+    [Column("is_teacher")]
+    public bool IsTeacher { get; set; }
 
     [Column("date_of_created", TypeName = "timestamp without time zone")]
     public DateTime DateOfCreated { get; set; }
@@ -49,29 +49,24 @@ public partial class User
     [Column("date_of_modified", TypeName = "timestamp without time zone")]
     public DateTime? DateOfModified { get; set; }
 
-    [Column("class_id")]
-    public int ClassId { get; set; }
-
-    [ForeignKey("ClassId")]
-    [InverseProperty("Users")]
-    [JsonIgnore]
-    public virtual Class Class { get; set; } = null!;
+    [Column("login", TypeName = "character varying")]
+    public string? Login { get; set; }
 
     [ForeignKey("OrganizationId")]
     [InverseProperty("Users")]
-    [JsonIgnore]
     public virtual Organization? Organization { get; set; }
 
     [ForeignKey("StateId")]
     [InverseProperty("Users")]
-    [JsonIgnore]
     public virtual EnumState State { get; set; } = null!;
 
     [InverseProperty("User")]
-    [JsonIgnore]
+    public virtual ICollection<UserClass> UserClasses { get; set; } = new List<UserClass>();
+
+    [InverseProperty("User")]
     public virtual ICollection<UserLessonAttendance> UserLessonAttendances { get; set; } = new List<UserLessonAttendance>();
 
     [InverseProperty("User")]
-    [JsonIgnore]
     public virtual ICollection<UserRole> UserRoles { get; set; } = new List<UserRole>();
 }
+

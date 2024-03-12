@@ -1,4 +1,5 @@
 ﻿using e_maktab.BizLogicLayer.Models;
+using e_maktab.DataLayer.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,4 +16,5 @@ public interface IClassService
     Task<int> Create(CreateClassDto dto);
     Task Update(UpdateClassDto dto);
     Task Delete(int id);
+    Task<int> AddUser(int classId, int userId);
 }

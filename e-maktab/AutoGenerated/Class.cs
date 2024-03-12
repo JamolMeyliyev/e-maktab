@@ -45,5 +45,5 @@ public partial class Class
     public virtual Teacher Teacher { get; set; } = null!;
 
     [InverseProperty("Class")]
-    public virtual ICollection<User> Users { get; set; } = new List<User>();
+    public virtual ICollection<UserClass> UserClasses { get; set; } = new List<UserClass>();
 }

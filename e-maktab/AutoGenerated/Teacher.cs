@@ -41,6 +41,9 @@ public partial class Teacher
     [Column("date_of_modified", TypeName = "timestamp without time zone")]
     public DateTime? DateOfModified { get; set; }
 
+    [Column("password_hash", TypeName = "character varying")]
+    public string? PasswordHash { get; set; }
+
     [InverseProperty("Teacher")]
     public virtual ICollection<Class> Classes { get; set; } = new List<Class>();
 

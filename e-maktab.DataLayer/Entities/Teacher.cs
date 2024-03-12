@@ -27,12 +27,14 @@ public partial class Teacher
     [StringLength(250)]
     public string? Email { get; set; }
 
+   
+
     [Column("phone_number")]
     [StringLength(50)]
     public string? PhoneNumber { get; set; }
 
     [Column("organization_id")]
-    public int? OrganizationId { get; set; }
+    public int OrganizationId { get; set; }
 
     [Column("state_id")]
     public int StateId { get; set; }

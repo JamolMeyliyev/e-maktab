@@ -3,7 +3,7 @@ using e_maktab.BizLogicLayer.Models;
 using e_maktab.BizLogicLayer.Services;
 using e_maktab.DataLayer.Entities;
 using e_maktab.DataLayer.Repositories;
-
+using Microsoft.AspNetCore.Identity;
 
 namespace e_maktab.BizLogicLayer.Service;
 
@@ -11,10 +11,12 @@ public class TeacherService : ITeacherService
 {
     private readonly ITeacherRepository _repos;
     private readonly IMapper _mapper;
-    public TeacherService(ITeacherRepository repos, IMapper mapper)
+    private readonly IUserRepository _userRepos;
+    public TeacherService(ITeacherRepository repos, IMapper mapper, IUserRepository userRepos)
     {
         _repos = repos;
         _mapper = mapper;
+        _userRepos = userRepos;
     }
     public List<TeacherAsSelectListDto> AsSelectList()
     {
@@ -24,6 +26,23 @@ public class TeacherService : ITeacherService
     public async Task<int> Create(CreateTeacherDto dto)
     {
         var entity = _mapper.Map<Teacher>(dto);
+        var user = new User()
+        {
+            FirstName= entity.FirstName,
+            LastName= entity.LastName,
+            Email= entity.Email,
+            DateOfCreated= entity.DateOfCreated,
+            PhoneNumber= entity.PhoneNumber,
+            OrganizationId = entity.OrganizationId,
+            StateId=entity.StateId,
+            Login = dto.Login,
+            IsTeacher = true
+            
+        };
+
+        user.PasswordHash = new PasswordHasher<User>().HashPassword(user, user.Login );
+        
+        await _userRepos.InsertAsync( user );
         var result = await _repos.InsertAsync(entity);
         return result.Id;
     }

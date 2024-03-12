@@ -14,7 +14,7 @@ public class UserRepository : GenericRepository<User>, IUserRepository
     {
         var entities = base.SelectAll();
         return entities
-            .Include(s => s.Class)
+            .Include(s => s.UserClasses).ThenInclude(s => s.Class)
             .Include(s => s.UserRoles)
             .ThenInclude(s => s.Role).ThenInclude(s => s.State)
             .Include(s => s.State);

@@ -14,6 +14,6 @@ public class CreateUserDto
     public int OrganizationId { get; set; }
     public bool IsTeacher { get; set; }
     public int StateId { get; set; }
-    public int ClassId { get; set; }
+    public int? ClassId { get; set; }
     public List<int> Roles { get; set; }
 }

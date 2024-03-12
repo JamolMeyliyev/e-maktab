@@ -19,7 +19,7 @@ public class UsersController : ControllerBase
         _service = service;
     }
     [HttpPost]
-    [Authorize(Roles = "string")]
+    //[Authorize(Roles = "string")]
     //[Authorize(moduleCodes: ModuleCode.UserView)]
     public async Task<IActionResult> GetList(UserListSortFilterOptions options)
     {

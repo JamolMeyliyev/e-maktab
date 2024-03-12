@@ -26,7 +26,7 @@ public class ClassRepository : GenericRepository<Class>, IClassRepository
             .Include(s => s.Teacher)
             .Include(s => s.Lessons)
             .ThenInclude(s => s.Science)
-            .Include(s => s.Users)
+            .Include(s => s.UserClasses).ThenInclude(s => s.User)
             .Include(s => s.State); 
 
         return entities;

@@ -28,15 +28,15 @@ public class ClassMapper : Profile
                 ClassId= s.ClassId,
 
             }).ToList()))
-            .ForMember(s => s.Users,s => s.MapFrom(s => s.Users.Select(s => new UserDto()
+            .ForMember(s => s.Users,s => s.MapFrom(s => s.UserClasses.Select(s => new UserDto()
             {
                 Id = s.Id,
-                OrganizationId = s.OrganizationId,
-                PhoneNumber = s.PhoneNumber,
-                LastName = s.LastName,
-                FirstName = s.FirstName,
-                Email = s.Email,
-                StateId = s.StateId
+                OrganizationId = s.User.OrganizationId,
+                PhoneNumber = s.User.PhoneNumber,
+                LastName = s.User.LastName,
+                FirstName = s.User.FirstName,
+                Email = s.User.Email,
+                StateId = s.User.StateId
             }).ToList()));
     }
 }

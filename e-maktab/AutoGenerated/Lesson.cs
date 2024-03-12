@@ -29,7 +29,7 @@ public partial class Lesson
     public int StateId { get; set; }
 
     [Column("lesson_day")]
-    public DateOnly? Day { get; set; }
+    public DateOnly? LessonDay { get; set; }
 
     [Column("start_time")]
     public TimeOnly? StartTime { get; set; }

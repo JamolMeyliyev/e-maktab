@@ -45,15 +45,10 @@ public class ScienceService : IScienceService
         return _mapper.Map<ScienceDto>(entity);
     }
 
-    public List<ScienceDto> GetList()
+    public List<ScienceDto> GetList(ScienceListSortFilterOptions options)
     {
         var list = _repos.SelectAll().ToList();
         return _mapper.Map<List<ScienceDto>>(list);
-    }
-
-    public List<ScienceDto> GetList(ScienceListSortFilterOptions options)
-    {
-        throw new NotImplementedException();
     }
 
     public async Task Update(UpdateScienceDto dto)

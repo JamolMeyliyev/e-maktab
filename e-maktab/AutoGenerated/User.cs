@@ -45,15 +45,8 @@ public partial class User
     [Column("date_of_modified", TypeName = "timestamp without time zone")]
     public DateTime? DateOfModified { get; set; }
 
-    [Column("class_id")]
-    public int ClassId { get; set; }
-
     [Column("login", TypeName = "character varying")]
     public string? Login { get; set; }
-
-    [ForeignKey("ClassId")]
-    [InverseProperty("Users")]
-    public virtual Class Class { get; set; } = null!;
 
     [ForeignKey("OrganizationId")]
     [InverseProperty("Users")]
@@ -62,6 +55,9 @@ public partial class User
     [ForeignKey("StateId")]
     [InverseProperty("Users")]
     public virtual EnumState State { get; set; } = null!;
+
+    [InverseProperty("User")]
+    public virtual ICollection<UserClass> UserClasses { get; set; } = new List<UserClass>();
 
     [InverseProperty("User")]
     public virtual ICollection<UserLessonAttendance> UserLessonAttendances { get; set; } = new List<UserLessonAttendance>();

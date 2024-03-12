@@ -40,12 +40,15 @@ public partial class EMaktabContext : DbContext
 
     public virtual DbSet<User> Users { get; set; }
 
+    public virtual DbSet<UserClass> UserClasses { get; set; }
+
     public virtual DbSet<UserLessonAttendance> UserLessonAttendances { get; set; }
 
     public virtual DbSet<UserRole> UserRoles { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-          => optionsBuilder.UseNpgsql("Host=localhost;Username=postgres;Password=postgres;Database=e-maktab-test");
+         => optionsBuilder.UseNpgsql("Host=localhost;Username=postgres;Password=postgres;Database=e-maktab-test");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -186,15 +189,24 @@ public partial class EMaktabContext : DbContext
 
             entity.Property(e => e.DateOfCreated).HasDefaultValueSql("now()");
 
-            entity.HasOne(d => d.Class).WithMany(p => p.Users)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("fk_class_id");
-
             entity.HasOne(d => d.Organization).WithMany(p => p.Users).HasConstraintName("fk_organization_id");
 
             entity.HasOne(d => d.State).WithMany(p => p.Users)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fk_state_id");
+        });
+
+        modelBuilder.Entity<UserClass>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("user_class_pkey");
+
+            entity.HasOne(d => d.Class).WithMany(p => p.UserClasses)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("fk_class_id");
+
+            entity.HasOne(d => d.User).WithMany(p => p.UserClasses)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("fk_user_id");
         });
 
         modelBuilder.Entity<UserLessonAttendance>(entity =>

@@ -15,20 +15,36 @@ public class LessonAttendanceService : ILessonAttendanceService
     private readonly ILessonRepository _repos;
     private readonly IMapper _mapper;
     public readonly IUserRepository _userRepos;
+    private readonly IUserClassRepository _userClassRepos;
     public readonly IUserLessonAttendanceRepository _userLAtRepos;
-    public LessonAttendanceService(ILessonRepository repos, IMapper mapper, IUserRepository userRepos,IUserLessonAttendanceRepository userLessonAttendanceRepository )
+    private readonly IClassRepository _classRepos;
+    public LessonAttendanceService
+        (ILessonRepository repos, 
+        IMapper mapper,
+        IUserRepository userRepos,
+        IUserLessonAttendanceRepository userLessonAttendanceRepository
+,
+        IUserClassRepository userClassRepos,
+        IClassRepository classRepository)
     {
         _repos = repos;
         _mapper = mapper;
         _userRepos = userRepos;
         _userLAtRepos = userLessonAttendanceRepository;
+        _userClassRepos = userClassRepos;
+        _classRepos = classRepository;
     }
-    
+
     public async Task<List<UserDto>> GetLessonStudents(int id)
     {
         var lesson = await _repos.SelectByIdAsync(id);
-        var users = _userRepos.SelectAll().Where(s => s.ClassId == lesson.ClassId).ToList();
-        return _mapper.Map<List<UserDto>>(users);
+        var classEntity = await _classRepos.SelectByIdAsync(id);
+        if(classEntity== null)
+        {
+            throw new Exception();
+        }
+        var users = classEntity.UserClasses.Select(s => s.User);
+        return _mapper.Map<List<UserDto>>(classEntity.UserClasses.Select( s => s.User));
     }
 
     public async Task SaveAttendanceByLesson(CreateLessonAttendance dto)
@@ -50,7 +66,12 @@ public class LessonAttendanceService : ILessonAttendanceService
     public async Task<List<LessonDto>> GetUserLessons(int id)
     {
         var user = await _userRepos.SelectByIdAsync(id);
-        var lessons = _repos.SelectAll().Where(s => s.ClassId== user.ClassId).ToList();
+        var classEntity = await _classRepos.SelectByIdAsync(id);
+        if (classEntity == null)
+        {
+            throw new Exception();
+        }
+        var lessons = classEntity.Lessons;
         return _mapper.Map<List<LessonDto>>(lessons);
     }
 }

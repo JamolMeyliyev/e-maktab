@@ -27,6 +27,7 @@ public class AccountService : StatusGenericHandler, IAccountService
     }
     public async Task<SuccessLoginDto> Login(LoginDto dto)
     {
+
         var user = await _context.Users.Include(s =>s.State).Include(s => s.UserRoles).ThenInclude(s => s.Role).FirstOrDefaultAsync(u => u.Login == dto.Login);
         if (user == null)
         {
@@ -79,6 +80,10 @@ public class AccountService : StatusGenericHandler, IAccountService
 
     public User Register(CreateUserDto dto)
     {
+        if(_context.Users.Any(s => s.Login == dto.Login))
+        {
+            throw new Exception("user is exist");
+        }
         var entity = _mapper.Map<User>(dto);
 
         entity.PasswordHash = new PasswordHasher<User>().HashPassword(entity, dto.Password);
